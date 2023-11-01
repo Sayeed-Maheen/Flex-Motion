@@ -99,35 +99,40 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                     SizedBox(height: 24.h),
-                    Container(
-                      width: double.infinity,
-                      height: 50.h,
-                      padding: REdgeInsets.all(16),
-                      decoration: ShapeDecoration(
-                        color: colorWhite,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8.r),
+                    InkWell(
+                      onTap:(){
+                        Get.offAllNamed("myBottomNavScreen");
+                      },
+                      child: Container(
+                        width: double.infinity,
+                        height: 50.h,
+                        padding: REdgeInsets.all(16),
+                        decoration: ShapeDecoration(
+                          color: colorWhite,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8.r),
+                          ),
                         ),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          SvgPicture.asset(
-                            google,
-                            height: 24.h,
-                            width: 24.w,
-                          ),
-                          SizedBox(width: 8.w),
-                          Text(
-                            continueWithGoogle,
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: colorBlack,
-                              fontSize: 16.sp,
-                              fontWeight: FontWeight.w500,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            SvgPicture.asset(
+                              google,
+                              height: 24.h,
+                              width: 24.w,
                             ),
-                          ),
-                        ],
+                            SizedBox(width: 8.w),
+                            Text(
+                              continueWithGoogle,
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: colorBlack,
+                                fontSize: 16.sp,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ],

@@ -44,6 +44,7 @@ class _MyBottomNavScreenState extends State<MyBottomNavScreen> {
       appBar: _selectedIndex == 0
           ? AppBar(
               systemOverlayStyle: SystemUiOverlayStyle.light,
+              elevation: 4,
               flexibleSpace: Container(
                 color: colorPrimary, // Set a fixed color here
               ),
