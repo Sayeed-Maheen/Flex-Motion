@@ -10,6 +10,11 @@ const colorDanger = Color(0xFFF43333);
 const colorWarning = Color(0xFFEBA235);
 const colorSuccess = Color(0xFF1EB26B);
 const colorOrange = Color(0xFFF46133);
+const colorRing = Color(0xFF1E8FB2);
+const colorTimerBg = Color(0xFF33ACD1);
+const colorTimerFillColor = Color(0xFF82E1FF);
+const colorButtonDone = Color(0xFF27A3CA);
+const colorButtonSkip = Color(0xFF27A3CA);
 
 const colorGradient1Start = Color(0xFF1E8FB2);
 const colorGradient1End = Color(0xFF4FCBF2);
