@@ -6,10 +6,11 @@ import 'package:uxpros/routes/routes.dart';
 import 'package:uxpros/utils/app_colors.dart';
 import 'package:uxpros/utils/strings.dart';
 
-void main() {
+void main() async {
   SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(statusBarColor: Colors.transparent));
   WidgetsFlutterBinding.ensureInitialized();
+  await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   runApp(const MyApp());
 }
 

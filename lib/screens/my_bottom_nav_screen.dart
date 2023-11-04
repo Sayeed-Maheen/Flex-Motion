@@ -26,7 +26,7 @@ class _MyBottomNavScreenState extends State<MyBottomNavScreen> {
   final List<Widget> _screens = [
     const HomeScreen(), // Replace with your actual home screen widget
     const TimerScreen(),
-    const ProgramScreen(),
+    ProgramScreen(),
     const ReportsScreen(),
     const ProfileScreen(),
   ];
