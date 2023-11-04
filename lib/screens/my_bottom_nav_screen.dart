@@ -28,7 +28,7 @@ class _MyBottomNavScreenState extends State<MyBottomNavScreen> {
     const TimerScreen(),
     ProgramScreen(),
     const ReportsScreen(),
-    const ProfileScreen(),
+    ProfileScreen(),
   ];
 
   void _onItemTapped(int index) {

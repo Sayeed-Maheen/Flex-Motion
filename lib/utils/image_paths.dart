@@ -19,6 +19,13 @@ const String back = "assets/images/arrow.svg";
 const String questionMark = "assets/images/question_mark.svg";
 const String man1 = "assets/images/man1.svg";
 const String man2 = "assets/images/man2.svg";
+const String myProfile = "assets/images/user.svg";
+const String myGoals = "assets/images/star.svg";
+const String bmi = "assets/images/bmi.svg";
+const String bmr = "assets/images/bmr.svg";
+const String logout = "assets/images/logout.svg";
+const String rightArrow = "assets/images/right_arrow.svg";
+
 const String trainingImage1 = "assets/images/training_image1.png";
 const String trainingImage2 = "assets/images/training_image2.png";
 const String trainingImage3 = "assets/images/training_image3.png";
@@ -31,3 +38,5 @@ const String fitness3 = "assets/images/fitness3.png";
 const String fitness4 = "assets/images/fitness4.png";
 const String fitness5 = "assets/images/fitness5.png";
 const String fitness6 = "assets/images/fitness6.png";
+
+const String profileImage = "assets/images/profile_image.jpg";
