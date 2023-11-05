@@ -5,9 +5,11 @@ import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
+import 'package:uxpros/screens/bmr_screen.dart';
 
 import '../utils/app_colors.dart';
 import '../utils/image_paths.dart';
+import 'bmi_screen.dart';
 import 'my_profile_screen.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -93,14 +95,10 @@ class ProfileScreen extends StatelessWidget {
                       // ));
                       break;
                     case 2:
-                      // Navigator.of(context).push(MaterialPageRoute(
-                      //   builder: (context) => screenRoutes[2](),
-                      // ));
+                      Get.to(const BmiScreen());
                       break;
                     case 3:
-                      // Navigator.of(context).push(MaterialPageRoute(
-                      //   builder: (context) => screenRoutes[3](),
-                      // ));
+                      Get.to(const BmrScreen());
                       break;
                     default:
                       // Handle any other cases here
