@@ -24,6 +24,8 @@ const String myGoals = "assets/images/star.svg";
 const String bmi = "assets/images/bmi.svg";
 const String bmr = "assets/images/bmr.svg";
 const String logout = "assets/images/logout.svg";
+const String target = "assets/images/target.svg";
+const String equipment = "assets/images/equipment.svg";
 const String rightArrow = "assets/images/right_arrow.svg";
 
 const String trainingImage1 = "assets/images/training_image1.png";

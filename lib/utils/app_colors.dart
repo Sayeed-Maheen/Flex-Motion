@@ -6,6 +6,7 @@ const colorBlack = Color(0xFF211F30);
 const colorWhite = Color(0xFFFFFFFF);
 const colorLightGray = Color(0xFFB8B8B8);
 const colorLighterGray = Color(0xFFECECEC);
+const colorLightestGray = Color(0xFFf8f8f8);
 const colorSearchContainerBg = Color(0xFFECECEC);
 const colorGray = Color(0xFF423E3E);
 const colorDanger = Color(0xFFF43333);
