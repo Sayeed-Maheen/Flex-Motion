@@ -5,26 +5,26 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:uxpros/screens/auth_screens/signup_screen.dart';
+import 'package:uxpros/screens/auth_screens/login_screen.dart';
 import 'package:uxpros/screens/my_bottom_nav_screen.dart';
 import 'package:uxpros/utils/app_colors.dart';
 import 'package:uxpros/utils/my_form_field.dart';
 
-import '../../services/auth_services.dart';
 import '../../utils/auth_toast.dart';
 import '../../utils/image_paths.dart';
 import '../../utils/my_button.dart';
 import '../../utils/strings.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+class SignupScreen extends StatefulWidget {
+  const SignupScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<SignupScreen> createState() => _SignupScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _SignupScreenState extends State<SignupScreen> {
   final _formKey = GlobalKey<FormState>();
+  final nameController = TextEditingController();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
@@ -34,6 +34,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   void dispose() {
     super.dispose();
+    nameController.dispose();
     emailController.dispose();
     passwordController.dispose();
   }
@@ -76,6 +77,17 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: Column(
                   children: [
                     MyFormField(
+                      controller: nameController,
+                      hintText: yourName,
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return "Enter Name";
+                        }
+                        return null;
+                      },
+                    ),
+                    SizedBox(height: 16.h),
+                    MyFormField(
                       controller: emailController,
                       hintText: yourEmail,
                       validator: (value) {
@@ -104,57 +116,6 @@ class _LoginScreenState extends State<LoginScreen> {
                         return null;
                       },
                     ),
-                    SizedBox(height: 24.h),
-                    Text(
-                      or,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: colorWhite,
-                        fontSize: 14.sp,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                    SizedBox(height: 24.h),
-                    InkWell(
-                      onTap: () async {
-                        final authService = AuthService();
-                        final user = await authService.signInWithGoogle();
-                        if (user != null) {
-                          Get.offAll(const MyBottomNavScreen());
-                        }
-                      },
-                      child: Container(
-                        width: double.infinity,
-                        height: 50.h,
-                        padding: REdgeInsets.all(16),
-                        decoration: ShapeDecoration(
-                          color: colorWhite,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8.r),
-                          ),
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            SvgPicture.asset(
-                              google,
-                              height: 24.h,
-                              width: 24.w,
-                            ),
-                            SizedBox(width: 8.w),
-                            Text(
-                              continueWithGoogle,
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: colorBlack,
-                                fontSize: 16.sp,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
                   ],
                 ),
               ),
@@ -165,36 +126,37 @@ class _LoginScreenState extends State<LoginScreen> {
                     MyButton(
                       loading: loading,
                       onPressed: () {
-                        setState(() {
-                          loading = true;
-                        });
-                        _auth
-                            .signInWithEmailAndPassword(
-                                email: emailController.text,
-                                password: passwordController.text.toString())
-                            .then((value) {
-                          AuthToast()
-                              .toastMessage(value.user!.email.toString());
+                        if (_formKey.currentState!.validate()) {
+                          // Clear the email and password fields
+
+                          setState(() {
+                            loading = true;
+                          });
+                          _auth
+                              .createUserWithEmailAndPassword(
+                                  email: emailController.text.toString(),
+                                  password: passwordController.text.toString())
+                              .then((value) {
+                            setState(() {
+                              loading = false;
+                            });
+                          }).onError((error, stackTrace) {
+                            AuthToast().toastMessage(error.toString());
+                            setState(() {
+                              loading = false;
+                            });
+                          });
                           Get.offAll(const MyBottomNavScreen());
-                          setState(() {
-                            loading = false;
-                          });
-                        }).onError((error, stackTrace) {
-                          debugPrint(error.toString());
-                          AuthToast().toastMessage(error.toString());
-                          setState(() {
-                            loading = false;
-                          });
-                        });
+                        }
                       },
-                      text: login,
+                      text: register,
                     ),
                     Gap(2.h),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          "Don't have an account?",
+                          "Already have an account?",
                           style: TextStyle(
                             fontSize: 14.sp,
                             color: colorWhite,
@@ -203,7 +165,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         TextButton(
                           onPressed: () {
-                            Get.to(const SignupScreen());
+                            Get.offAll(const LoginScreen());
                           },
                           style: TextButton.styleFrom(
                               padding: const EdgeInsets.all(5),
@@ -211,7 +173,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                               alignment: Alignment.centerLeft),
                           child: Text(
-                            "Register",
+                            "Login",
                             style: TextStyle(
                               fontSize: 14.sp,
                               color: colorPrimary,

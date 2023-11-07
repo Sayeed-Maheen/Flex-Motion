@@ -5,8 +5,10 @@ import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
+import 'package:uxpros/screens/auth_screens/login_screen.dart';
 import 'package:uxpros/screens/bmr_screen.dart';
 
+import '../services/auth_services.dart';
 import '../utils/app_colors.dart';
 import '../utils/image_paths.dart';
 import 'bmi_screen.dart';
@@ -83,7 +85,7 @@ class ProfileScreen extends StatelessWidget {
             return InkWell(
                 splashFactory: NoSplash.splashFactory,
                 highlightColor: Colors.transparent, // and here
-                onTap: () {
+                onTap: () async {
                   // Use the index to determine which screen to open.
                   switch (index) {
                     case 0:
@@ -99,6 +101,10 @@ class ProfileScreen extends StatelessWidget {
                       break;
                     case 3:
                       Get.to(const BmrScreen());
+                      break;
+                    case 4:
+                      await AuthService().signOut();
+                      Get.offAll(const LoginScreen());
                       break;
                     default:
                       // Handle any other cases here

@@ -9,11 +9,13 @@ class MyButton extends StatefulWidget {
   final void Function()?
       onPressed; // Callback function for when the button is pressed
   final String text; // Text to be displayed on the button
+  final bool? loading;
 
   const MyButton({
     Key? key,
     required this.onPressed,
     required this.text,
+    this.loading,
   }) : super(key: key);
 
   @override

@@ -1,9 +1,11 @@
 import 'dart:async';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:uxpros/screens/my_bottom_nav_screen.dart';
 import 'package:uxpros/utils/strings.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -41,7 +43,13 @@ class _SplashScreenState extends State<SplashScreen> {
       Get.offAll(_initialScreen);
     } else {
       setState(() {
-        Get.offAll(const LoginScreen());
+        final auth = FirebaseAuth.instance;
+        final user = auth.currentUser;
+        if (user != null) {
+          Get.offAll(const MyBottomNavScreen());
+        } else {
+          Get.offAll(const LoginScreen());
+        }
       });
     }
   }

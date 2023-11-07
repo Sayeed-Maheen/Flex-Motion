@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1010990827395",
+    "project_id": "uxpros-f52bc",
+    "storage_bucket": "uxpros-f52bc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1010990827395:android:06c498224251cafb97d8b6",
+        "android_client_info": {
+          "package_name": "com.example.uxpros"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyADbStxHx79q_PFumW0aAheliVwopyKsCY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
