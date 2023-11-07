@@ -16,6 +16,7 @@ const colorOrange = Color(0xFFF46133);
 const colorRing = Color(0xFF1E8FB2);
 const colorTimerBg = Color(0xFF33ACD1);
 const colorTimerFillColor = Color(0xFF82E1FF);
+const colorCircle = Color(0xFF27A4CB);
 const colorButtonDone = Color(0xFF27A3CA);
 const colorButtonSkip = Color(0xFF27A3CA);
 const colorBlue = Color(0xFF4ca7e4);

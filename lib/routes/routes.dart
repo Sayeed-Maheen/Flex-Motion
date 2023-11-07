@@ -17,6 +17,13 @@ class RoutesClass {
     GetPage(name: onboardingScreen, page: () => const OnboardingScreen()),
     GetPage(name: loginScreen, page: () => const LoginScreen()),
     GetPage(name: myBottomNavScreen, page: () => const MyBottomNavScreen()),
-    GetPage(name: exercisesScreen, page: () => const ExercisesScreen()),
+    GetPage(
+        name: exercisesScreen,
+        page: () => const ExercisesScreen(
+              gifUrl: "",
+              instructions: [],
+              name: "",
+              secondaryMuscles: [],
+            )),
   ];
 }

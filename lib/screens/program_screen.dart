@@ -10,6 +10,7 @@ import 'package:shimmer/shimmer.dart';
 import '../services/api_services.dart';
 import '../utils/app_colors.dart';
 import '../utils/image_paths.dart';
+import 'exercises_screen.dart';
 
 class ProgramScreen extends StatefulWidget {
   const ProgramScreen({super.key});
@@ -20,42 +21,6 @@ class ProgramScreen extends StatefulWidget {
 
 class _ProgramScreenState extends State<ProgramScreen> {
   final searchController = TextEditingController();
-
-  final List<String> _fitnessName = [
-    'Crunches',
-    'Decline Crunch',
-    'Dumbbell Side Bend',
-    'Hanging Leg Raise',
-    'Crunches',
-    'Crunches',
-  ];
-
-  final List<String> _fitnessImages = [
-    fitness1,
-    fitness2,
-    fitness3,
-    fitness4,
-    fitness5,
-    fitness6,
-  ];
-
-  final List<String> _duration = [
-    '1hour 20 minutes',
-    '1hour 20 minutes',
-    '1hour 20 minutes',
-    '1hour 20 minutes',
-    '1hour 20 minutes',
-    '1hour 20 minutes',
-  ];
-
-  final List<String> _set = [
-    '1/3',
-    '1/3',
-    '1/3',
-    '1/3',
-    '1/3',
-    '1/3',
-  ];
 
   String capitalize(String s) => s[0].toUpperCase() + s.substring(1);
   final ApiService _apiService = ApiService();
@@ -210,19 +175,27 @@ class _ProgramScreenState extends State<ProgramScreen> {
                   GridView.count(
                     shrinkWrap: true,
                     crossAxisCount: 2,
-                    crossAxisSpacing: 16,
-                    mainAxisSpacing: 16,
-                    childAspectRatio: 2 / 2.5,
+                    crossAxisSpacing: 16.w,
+                    mainAxisSpacing: 16.h,
+                    childAspectRatio: 2 / 2.4,
                     physics: const NeverScrollableScrollPhysics(),
                     children: List.generate(exercises.length + 1, (index) {
                       if (index < exercises.length) {
                         var exercise = exercises[index];
                         return InkWell(
                           onTap: () {
-                            Get.toNamed("exercisesScreen");
+                            Get.to(ExercisesScreen(
+                              name: exercise['name'],
+                              gifUrl: exercise['gifUrl'],
+                              secondaryMuscles: List<String>.from(
+                                  exercise['secondaryMuscles']),
+                              instructions:
+                                  List<String>.from(exercise['instructions']),
+                            ));
                           },
                           child: Card(
-                            shadowColor: colorLightGray,
+                            shadowColor: colorLighterGray,
+                            margin: EdgeInsets.zero,
                             elevation: 3,
                             child: Container(
                               decoration: BoxDecoration(
@@ -230,6 +203,7 @@ class _ProgramScreenState extends State<ProgramScreen> {
                                 borderRadius: BorderRadius.circular(10.r),
                               ),
                               child: Column(
+                                mainAxisSize: MainAxisSize.min,
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
                                   ClipRRect(
@@ -309,7 +283,7 @@ class _ProgramScreenState extends State<ProgramScreen> {
                                         ),
                                       ],
                                     ),
-                                  )
+                                  ),
                                 ],
                               ),
                             ),
@@ -320,51 +294,47 @@ class _ProgramScreenState extends State<ProgramScreen> {
                         return Shimmer.fromColors(
                           baseColor: Colors.grey[300] ??
                               Colors.grey, // Use default color if null
-                          highlightColor: Colors.grey[100] ?? Colors.white,
-                          child: Padding(
-                            padding: EdgeInsets.all(10.w),
-                            child: Card(
-                              color: const Color(0xFFFFFFFF),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(12.0),
-                                side: const BorderSide(
-                                    color: Color(0xEFFFEFFF), width: 1),
+                          highlightColor: Colors.grey[100] ?? Colors.grey,
+                          child: Card(
+                            color: colorWhite,
+                            elevation: 3,
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: colorWhite,
+                                borderRadius: BorderRadius.circular(10.r),
                               ),
-                              child: Padding(
-                                padding: EdgeInsets.all(20.w),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Container(
-                                      width: double.infinity,
-                                      height: 18
-                                          .sp, // Set height for shimmer effect
-                                      color: Colors.white,
-                                    ),
-                                    SizedBox(height: 10.h),
-                                    Container(
-                                      width: double.infinity,
-                                      height: 14
-                                          .sp, // Set height for shimmer effect
-                                      color: Colors.white,
-                                    ),
-                                    SizedBox(height: 10.h),
-                                    Container(
-                                      width: double.infinity,
-                                      height: 14
-                                          .sp, // Set height for shimmer effect
-                                      color: Colors.white,
-                                    ),
-                                    SizedBox(height: 10.h),
-                                    Container(
-                                      width:
-                                          100.w, // Set width for shimmer effect
-                                      height: 100
-                                          .h, // Set height for shimmer effect
-                                      color: Colors.white,
-                                    ),
-                                  ],
-                                ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Container(
+                                    width: double.infinity,
+                                    height:
+                                        14.sp, // Set height for shimmer effect
+                                    color: colorWhite,
+                                  ),
+                                  Gap(4.h),
+                                  Container(
+                                    width: double.infinity,
+                                    height:
+                                        14.sp, // Set height for shimmer effect
+                                    color: colorWhite,
+                                  ),
+                                  Gap(4.h),
+                                  Container(
+                                    width: double.infinity,
+                                    height:
+                                        14.sp, // Set height for shimmer effect
+                                    color: colorWhite,
+                                  ),
+                                  Gap(4.h),
+                                  Container(
+                                    width:
+                                        100.w, // Set width for shimmer effect
+                                    height:
+                                        100.h, // Set height for shimmer effect
+                                    color: colorWhite,
+                                  ),
+                                ],
                               ),
                             ),
                           ),
@@ -372,7 +342,6 @@ class _ProgramScreenState extends State<ProgramScreen> {
                       }
                     }),
                   ),
-                  Gap(16.h),
                 ],
               ),
             ],
