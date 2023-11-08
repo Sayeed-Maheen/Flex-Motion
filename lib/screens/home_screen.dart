@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -6,6 +7,7 @@ import 'package:uxpros/utils/app_colors.dart';
 
 import '../controller/body_part_controller.dart';
 import '../utils/image_paths.dart';
+import '../utils/strings.dart';
 import 'home_details_screen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -95,6 +97,58 @@ class _HomeScreenState extends State<HomeScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: colorWhite,
+      appBar: AppBar(
+        systemOverlayStyle: SystemUiOverlayStyle.light,
+        elevation: 4,
+        flexibleSpace: Container(
+          color: colorPrimary, // Set a fixed color here
+        ),
+        title: Text(
+          homeText,
+          style: TextStyle(
+            fontSize: 20.sp,
+            fontWeight: FontWeight.w500,
+            color: colorWhite,
+          ),
+        ),
+        titleSpacing: -1,
+        // leading: MaterialButton(
+        //   child: SvgPicture.asset(
+        //     drawer,
+        //     height: 24.h,
+        //     width: 24.w,
+        //   ),
+        //   onPressed: () {
+        //     _scaffoldKey.currentState?.openDrawer();
+        //   },
+        // ),
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: SvgPicture.asset(
+              notification,
+              height: 22.h,
+              width: 22.w,
+            ),
+          ),
+          IconButton(
+            onPressed: () {},
+            icon: SvgPicture.asset(
+              search,
+              height: 22.h,
+              width: 22.w,
+            ),
+          ),
+          IconButton(
+            onPressed: () {},
+            icon: SvgPicture.asset(
+              home,
+              height: 22.h,
+              width: 22.w,
+            ),
+          ),
+        ],
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [

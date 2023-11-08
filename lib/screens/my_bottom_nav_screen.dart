@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:uxpros/screens/profile_screen.dart';
@@ -26,7 +25,7 @@ class _MyBottomNavScreenState extends State<MyBottomNavScreen> {
   final List<Widget> _screens = [
     const HomeScreen(), // Replace with your actual home screen widget
     const TimerScreen(),
-    ProgramScreen(),
+    const ProgramScreen(),
     const ReportsScreen(),
     ProfileScreen(),
   ];
@@ -40,78 +39,6 @@ class _MyBottomNavScreenState extends State<MyBottomNavScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: _scaffoldKey,
-      appBar: _selectedIndex == 0
-          ? AppBar(
-              systemOverlayStyle: SystemUiOverlayStyle.light,
-              elevation: 4,
-              flexibleSpace: Container(
-                color: colorPrimary, // Set a fixed color here
-              ),
-              title: Text(
-                homeText,
-                style: TextStyle(
-                  fontSize: 20.sp,
-                  fontWeight: FontWeight.w500,
-                  color: colorWhite,
-                ),
-              ),
-              titleSpacing: -1,
-              leading: _selectedIndex == 0
-                  ? MaterialButton(
-                      child: SvgPicture.asset(
-                        drawer,
-                        height: 24.h,
-                        width: 24.w,
-                      ),
-                      onPressed: () {
-                        _scaffoldKey.currentState?.openDrawer();
-                      },
-                    )
-                  : null,
-              actions: [
-                IconButton(
-                  onPressed: () {},
-                  icon: SvgPicture.asset(
-                    notification,
-                    height: 22.h,
-                    width: 22.w,
-                  ),
-                ),
-                IconButton(
-                  onPressed: () {},
-                  icon: SvgPicture.asset(
-                    search,
-                    height: 22.h,
-                    width: 22.w,
-                  ),
-                ),
-                IconButton(
-                  onPressed: () {},
-                  icon: SvgPicture.asset(
-                    home,
-                    height: 22.h,
-                    width: 22.w,
-                  ),
-                ),
-              ],
-            )
-          : null,
-      drawer: _selectedIndex == 0
-          ? Drawer(
-              child: Center(
-                child: MaterialButton(
-                  child: const Text("Press"),
-                  onPressed: () {
-                    // Navigator.push(
-                    //   context,
-                    //   MaterialPageRoute(builder: (context) => const Hello1()),
-                    // );
-                  },
-                ),
-              ),
-            )
-          : null,
       body: IndexedStack(
         index: _selectedIndex,
         children: _screens,
