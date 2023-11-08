@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:uxpros/utils/app_colors.dart';
 
+import '../controller/body_part_controller.dart';
 import '../utils/image_paths.dart';
+import 'home_details_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -21,6 +24,7 @@ class _HomeScreenState extends State<HomeScreen>
     const Tab(text: 'Advanced'),
   ];
   late TabController _tabController;
+  final BodyPartController _bodyPartController = Get.put(BodyPartController());
   int _tabIndex = 0;
 
   @override
@@ -50,55 +54,42 @@ class _HomeScreenState extends State<HomeScreen>
     trainingImage3,
     trainingImage4,
     trainingImage5,
+    trainingImage6,
+    trainingImage7,
+    trainingImage8,
+    trainingImage9,
+    trainingImage10,
   ];
 
   final List<String> _workoutName = [
-    'ABS Workout',
+    'Back Workout',
+    'Cardio Workout',
     'Chest Workout',
-    'Arms Workout',
-    'Legs Workout',
-    'Shoulder & Back',
+    'Lower Arms Workout',
+    'Lower Legs Workout',
+    'Neck Workout',
+    'Shoulders Workout',
+    'Upper Arms Workout',
+    'Upper Legs Workout',
+    'Waist Workout',
   ];
 
-  final List<String> _duration = [
-    '2hour 20 minutes',
-    '2hour 20 minutes',
-    '2hour 20 minutes',
-    '2hour 20 minutes',
-    '2hour 20 minutes',
+  final List<String> _bodyPartName = [
+    'back',
+    'cardio',
+    'chest',
+    'lower arms',
+    'lower legs',
+    'neck',
+    'shoulders',
+    'upper arms',
+    'upper legs',
+    'waist',
   ];
 
-  final List<String> _typeBeginner = [
-    'Beginner',
-    'Beginner',
-    'Beginner',
-    'Beginner',
-    'Beginner',
-  ];
-
-  final List<String> _typeIntermediate = [
-    'Intermediate',
-    'Intermediate',
-    'Intermediate',
-    'Intermediate',
-    'Intermediate',
-  ];
-
-  final List<String> _typeAdvanced = [
-    'Advanced',
-    'Advanced',
-    'Advanced',
-    'Advanced',
-    'Advanced',
-  ];
-
-  final List<String> _set = [
-    '1/3',
-    '1/3',
-    '1/3',
-    '1/3',
-    '1/3',
-  ];
+  final List<String> _duration =
+      List.generate(10, (index) => '2 hours 20 minutes');
+  final List<String> _set = List.generate(10, (index) => '1/3');
 
   @override
   Widget build(BuildContext context) {
@@ -223,110 +214,7 @@ class _HomeScreenState extends State<HomeScreen>
                       ),
                     ),
                     SizedBox(height: 8.h),
-                    ...List.generate(
-                      _images.length,
-                      (index) => Card(
-                        shadowColor: colorLightGray,
-                        margin:
-                            REdgeInsets.only(left: 16, right: 16, bottom: 12),
-                        elevation: 3,
-                        child: Container(
-                          height: 105.h,
-                          width: double.infinity,
-                          padding: REdgeInsets.symmetric(
-                              horizontal: 16, vertical: 8),
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                              image: AssetImage(_images[index]),
-                              fit: BoxFit.fill,
-                            ),
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                _workoutName[index],
-                                style: TextStyle(
-                                  color: colorWhite,
-                                  fontSize: 24.sp,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                              Row(
-                                children: [
-                                  SvgPicture.asset(
-                                    timer,
-                                    height: 16.h,
-                                    width: 16.w,
-                                    color: colorWhite,
-                                  ),
-                                  SizedBox(width: 4.w),
-                                  Text(
-                                    _duration[index],
-                                    style: TextStyle(
-                                      color: colorWhite,
-                                      fontSize: 13.sp,
-                                      fontWeight: FontWeight.w400,
-                                    ),
-                                  )
-                                ],
-                              ),
-                              SizedBox(height: 16.h),
-                              Row(
-                                children: [
-                                  Container(
-                                    padding: REdgeInsets.symmetric(
-                                        horizontal: 8, vertical: 6),
-                                    decoration: BoxDecoration(
-                                      color: colorBlack,
-                                      borderRadius: BorderRadius.circular(20.r),
-                                    ),
-                                    child: Text(
-                                      _typeBeginner[index],
-                                      style: TextStyle(
-                                        color: colorWhite,
-                                        fontSize: 11.sp,
-                                        fontFamily: 'Inter',
-                                        fontWeight: FontWeight.w400,
-                                      ),
-                                    ),
-                                  ),
-                                  SizedBox(width: 12.w),
-                                  Container(
-                                    padding: REdgeInsets.symmetric(
-                                        horizontal: 8, vertical: 6),
-                                    decoration: BoxDecoration(
-                                      color: colorBlack,
-                                      borderRadius: BorderRadius.circular(20.r),
-                                    ),
-                                    child: Row(
-                                      children: [
-                                        SvgPicture.asset(
-                                          lightning,
-                                          height: 10.h,
-                                          width: 10.w,
-                                        ),
-                                        SizedBox(width: 1.w),
-                                        Text(
-                                          _set[index],
-                                          style: TextStyle(
-                                            color: colorWhite,
-                                            fontSize: 11.sp,
-                                            fontFamily: 'Inter',
-                                            fontWeight: FontWeight.w400,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
+                    beginner(),
                     SizedBox(height: 8.h),
                     Padding(
                       padding: REdgeInsets.symmetric(horizontal: 16),
@@ -340,110 +228,7 @@ class _HomeScreenState extends State<HomeScreen>
                       ),
                     ),
                     SizedBox(height: 8.h),
-                    ...List.generate(
-                      _images.length,
-                      (index) => Card(
-                        shadowColor: colorLightGray,
-                        margin:
-                            REdgeInsets.only(left: 16, right: 16, bottom: 12),
-                        elevation: 3,
-                        child: Container(
-                          height: 105.h,
-                          width: double.infinity,
-                          padding: REdgeInsets.symmetric(
-                              horizontal: 16, vertical: 8),
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                              image: AssetImage(_images[index]),
-                              fit: BoxFit.fill,
-                            ),
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                _workoutName[index],
-                                style: TextStyle(
-                                  color: colorWhite,
-                                  fontSize: 24.sp,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                              Row(
-                                children: [
-                                  SvgPicture.asset(
-                                    timer,
-                                    height: 16.h,
-                                    width: 16.w,
-                                    color: colorWhite,
-                                  ),
-                                  SizedBox(width: 4.w),
-                                  Text(
-                                    _duration[index],
-                                    style: TextStyle(
-                                      color: colorWhite,
-                                      fontSize: 13.sp,
-                                      fontWeight: FontWeight.w400,
-                                    ),
-                                  )
-                                ],
-                              ),
-                              SizedBox(height: 16.h),
-                              Row(
-                                children: [
-                                  Container(
-                                    padding: REdgeInsets.symmetric(
-                                        horizontal: 8, vertical: 6),
-                                    decoration: BoxDecoration(
-                                      color: colorBlack,
-                                      borderRadius: BorderRadius.circular(20.r),
-                                    ),
-                                    child: Text(
-                                      _typeIntermediate[index],
-                                      style: TextStyle(
-                                        color: colorWhite,
-                                        fontSize: 11.sp,
-                                        fontFamily: 'Inter',
-                                        fontWeight: FontWeight.w400,
-                                      ),
-                                    ),
-                                  ),
-                                  SizedBox(width: 12.w),
-                                  Container(
-                                    padding: REdgeInsets.symmetric(
-                                        horizontal: 8, vertical: 6),
-                                    decoration: BoxDecoration(
-                                      color: colorBlack,
-                                      borderRadius: BorderRadius.circular(20.r),
-                                    ),
-                                    child: Row(
-                                      children: [
-                                        SvgPicture.asset(
-                                          lightning,
-                                          height: 10.h,
-                                          width: 10.w,
-                                        ),
-                                        SizedBox(width: 1.w),
-                                        Text(
-                                          _set[index],
-                                          style: TextStyle(
-                                            color: colorWhite,
-                                            fontSize: 11.sp,
-                                            fontFamily: 'Inter',
-                                            fontWeight: FontWeight.w400,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
+                    intermediate(),
                     SizedBox(height: 8.h),
                     Padding(
                       padding: REdgeInsets.symmetric(horizontal: 16),
@@ -457,430 +242,369 @@ class _HomeScreenState extends State<HomeScreen>
                       ),
                     ),
                     SizedBox(height: 8.h),
-                    ...List.generate(
-                      _images.length,
-                      (index) => Card(
-                        shadowColor: colorLightGray,
-                        margin:
-                            REdgeInsets.only(left: 16, right: 16, bottom: 12),
-                        elevation: 3,
-                        child: Container(
-                          height: 105.h,
-                          width: double.infinity,
-                          padding: REdgeInsets.symmetric(
-                              horizontal: 16, vertical: 8),
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                              image: AssetImage(_images[index]),
-                              fit: BoxFit.fill,
-                            ),
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                _workoutName[index],
-                                style: TextStyle(
-                                  color: colorWhite,
-                                  fontSize: 24.sp,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                              Row(
-                                children: [
-                                  SvgPicture.asset(
-                                    timer,
-                                    height: 16.h,
-                                    width: 16.w,
-                                    color: colorWhite,
-                                  ),
-                                  SizedBox(width: 4.w),
-                                  Text(
-                                    _duration[index],
-                                    style: TextStyle(
-                                      color: colorWhite,
-                                      fontSize: 13.sp,
-                                      fontWeight: FontWeight.w400,
-                                    ),
-                                  )
-                                ],
-                              ),
-                              SizedBox(height: 16.h),
-                              Row(
-                                children: [
-                                  Container(
-                                    padding: REdgeInsets.symmetric(
-                                        horizontal: 8, vertical: 6),
-                                    decoration: BoxDecoration(
-                                      color: colorBlack,
-                                      borderRadius: BorderRadius.circular(20.r),
-                                    ),
-                                    child: Text(
-                                      _typeAdvanced[index],
-                                      style: TextStyle(
-                                        color: colorWhite,
-                                        fontSize: 11.sp,
-                                        fontFamily: 'Inter',
-                                        fontWeight: FontWeight.w400,
-                                      ),
-                                    ),
-                                  ),
-                                  SizedBox(width: 12.w),
-                                  Container(
-                                    padding: REdgeInsets.symmetric(
-                                        horizontal: 8, vertical: 6),
-                                    decoration: BoxDecoration(
-                                      color: colorBlack,
-                                      borderRadius: BorderRadius.circular(20.r),
-                                    ),
-                                    child: Row(
-                                      children: [
-                                        SvgPicture.asset(
-                                          lightning,
-                                          height: 10.h,
-                                          width: 10.w,
-                                        ),
-                                        SizedBox(width: 1.w),
-                                        Text(
-                                          _set[index],
-                                          style: TextStyle(
-                                            color: colorWhite,
-                                            fontSize: 11.sp,
-                                            fontFamily: 'Inter',
-                                            fontWeight: FontWeight.w400,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
+                    advanced()
                   ],
                 ),
-                Column(
-                  children: List.generate(
-                    _images.length,
-                    (index) => Card(
-                      shadowColor: colorLightGray,
-                      margin: REdgeInsets.only(left: 16, right: 16, bottom: 12),
-                      elevation: 3,
-                      child: Container(
-                        height: 105.h,
-                        width: double.infinity,
-                        padding:
-                            REdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: AssetImage(_images[index]),
-                            fit: BoxFit.fill,
-                          ),
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              _workoutName[index],
-                              style: TextStyle(
-                                color: colorWhite,
-                                fontSize: 24.sp,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                            Row(
-                              children: [
-                                SvgPicture.asset(
-                                  timer,
-                                  height: 16.h,
-                                  width: 16.w,
-                                  color: colorWhite,
-                                ),
-                                SizedBox(width: 4.w),
-                                Text(
-                                  _duration[index],
-                                  style: TextStyle(
-                                    color: colorWhite,
-                                    fontSize: 13.sp,
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                )
-                              ],
-                            ),
-                            SizedBox(height: 16.h),
-                            Row(
-                              children: [
-                                Container(
-                                  padding: REdgeInsets.symmetric(
-                                      horizontal: 8, vertical: 6),
-                                  decoration: BoxDecoration(
-                                    color: colorBlack,
-                                    borderRadius: BorderRadius.circular(20.r),
-                                  ),
-                                  child: Text(
-                                    _typeBeginner[index],
-                                    style: TextStyle(
-                                      color: colorWhite,
-                                      fontSize: 11.sp,
-                                      fontFamily: 'Inter',
-                                      fontWeight: FontWeight.w400,
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(width: 12.w),
-                                Container(
-                                  padding: REdgeInsets.symmetric(
-                                      horizontal: 8, vertical: 6),
-                                  decoration: BoxDecoration(
-                                    color: colorBlack,
-                                    borderRadius: BorderRadius.circular(20.r),
-                                  ),
-                                  child: Row(
-                                    children: [
-                                      SvgPicture.asset(
-                                        lightning,
-                                        height: 10.h,
-                                        width: 10.w,
-                                      ),
-                                      SizedBox(width: 1.w),
-                                      Text(
-                                        _set[index],
-                                        style: TextStyle(
-                                          color: colorWhite,
-                                          fontSize: 11.sp,
-                                          fontFamily: 'Inter',
-                                          fontWeight: FontWeight.w400,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                Column(
-                  children: List.generate(
-                    _images.length,
-                    (index) => Card(
-                      shadowColor: colorLightGray,
-                      margin: REdgeInsets.only(left: 16, right: 16, bottom: 12),
-                      elevation: 3,
-                      child: Container(
-                        height: 105.h,
-                        width: double.infinity,
-                        padding:
-                            REdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: AssetImage(_images[index]),
-                            fit: BoxFit.fill,
-                          ),
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              _workoutName[index],
-                              style: TextStyle(
-                                color: colorWhite,
-                                fontSize: 24.sp,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                            Row(
-                              children: [
-                                SvgPicture.asset(
-                                  timer,
-                                  height: 16.h,
-                                  width: 16.w,
-                                  color: colorWhite,
-                                ),
-                                SizedBox(width: 4.w),
-                                Text(
-                                  _duration[index],
-                                  style: TextStyle(
-                                    color: colorWhite,
-                                    fontSize: 13.sp,
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                )
-                              ],
-                            ),
-                            SizedBox(height: 16.h),
-                            Row(
-                              children: [
-                                Container(
-                                  padding: REdgeInsets.symmetric(
-                                      horizontal: 8, vertical: 6),
-                                  decoration: BoxDecoration(
-                                    color: colorBlack,
-                                    borderRadius: BorderRadius.circular(20.r),
-                                  ),
-                                  child: Text(
-                                    _typeIntermediate[index],
-                                    style: TextStyle(
-                                      color: colorWhite,
-                                      fontSize: 11.sp,
-                                      fontFamily: 'Inter',
-                                      fontWeight: FontWeight.w400,
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(width: 12.w),
-                                Container(
-                                  padding: REdgeInsets.symmetric(
-                                      horizontal: 8, vertical: 6),
-                                  decoration: BoxDecoration(
-                                    color: colorBlack,
-                                    borderRadius: BorderRadius.circular(20.r),
-                                  ),
-                                  child: Row(
-                                    children: [
-                                      SvgPicture.asset(
-                                        lightning,
-                                        height: 10.h,
-                                        width: 10.w,
-                                      ),
-                                      SizedBox(width: 1.w),
-                                      Text(
-                                        _set[index],
-                                        style: TextStyle(
-                                          color: colorWhite,
-                                          fontSize: 11.sp,
-                                          fontFamily: 'Inter',
-                                          fontWeight: FontWeight.w400,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                Column(
-                  children: List.generate(
-                    _images.length,
-                    (index) => Card(
-                      shadowColor: colorLightGray,
-                      margin: REdgeInsets.only(left: 16, right: 16, bottom: 12),
-                      elevation: 3,
-                      child: Container(
-                        height: 105.h,
-                        width: double.infinity,
-                        padding:
-                            REdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: AssetImage(_images[index]),
-                            fit: BoxFit.fill,
-                          ),
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              _workoutName[index],
-                              style: TextStyle(
-                                color: colorWhite,
-                                fontSize: 24.sp,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                            Row(
-                              children: [
-                                SvgPicture.asset(
-                                  timer,
-                                  height: 16.h,
-                                  width: 16.w,
-                                  color: colorWhite,
-                                ),
-                                SizedBox(width: 4.w),
-                                Text(
-                                  _duration[index],
-                                  style: TextStyle(
-                                    color: colorWhite,
-                                    fontSize: 13.sp,
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                )
-                              ],
-                            ),
-                            SizedBox(height: 16.h),
-                            Row(
-                              children: [
-                                Container(
-                                  padding: REdgeInsets.symmetric(
-                                      horizontal: 8, vertical: 6),
-                                  decoration: BoxDecoration(
-                                    color: colorBlack,
-                                    borderRadius: BorderRadius.circular(20.r),
-                                  ),
-                                  child: Text(
-                                    _typeAdvanced[index],
-                                    style: TextStyle(
-                                      color: colorWhite,
-                                      fontSize: 11.sp,
-                                      fontFamily: 'Inter',
-                                      fontWeight: FontWeight.w400,
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(width: 12.w),
-                                Container(
-                                  padding: REdgeInsets.symmetric(
-                                      horizontal: 8, vertical: 6),
-                                  decoration: BoxDecoration(
-                                    color: colorBlack,
-                                    borderRadius: BorderRadius.circular(20.r),
-                                  ),
-                                  child: Row(
-                                    children: [
-                                      SvgPicture.asset(
-                                        lightning,
-                                        height: 10.h,
-                                        width: 10.w,
-                                      ),
-                                      SizedBox(width: 1.w),
-                                      Text(
-                                        _set[index],
-                                        style: TextStyle(
-                                          color: colorWhite,
-                                          fontSize: 11.sp,
-                                          fontFamily: 'Inter',
-                                          fontWeight: FontWeight.w400,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
+                beginner(),
+                intermediate(),
+                advanced(),
               ][_tabIndex],
             ),
           ],
+        ),
+      ),
+    );
+  }
+
+  Widget beginner() {
+    final List<String> typeBeginner = [];
+    for (int i = 0; i < 10; i++) {
+      typeBeginner.add('Beginner');
+    }
+    return Column(
+      children: List.generate(
+        _images.length,
+        (index) => InkWell(
+          onTap: () {
+            _bodyPartController.setSelectedBodyPart(_bodyPartName[index]);
+            Get.to(() => HomeDetailsScreen(
+                numItems: 5, workoutName: _workoutName[index]));
+          },
+          child: Card(
+            shadowColor: colorLightGray,
+            margin: REdgeInsets.only(left: 16, right: 16, bottom: 12),
+            elevation: 3,
+            child: Container(
+              height: 105.h,
+              width: double.infinity,
+              padding: REdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage(_images[index]),
+                  fit: BoxFit.cover,
+                ),
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    _workoutName[index],
+                    style: TextStyle(
+                      color: colorWhite,
+                      fontSize: 24.sp,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  Row(
+                    children: [
+                      SvgPicture.asset(
+                        timer,
+                        height: 16.h,
+                        width: 16.w,
+                        color: colorWhite,
+                      ),
+                      SizedBox(width: 4.w),
+                      Text(
+                        _duration[index],
+                        style: TextStyle(
+                          color: colorWhite,
+                          fontSize: 13.sp,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      )
+                    ],
+                  ),
+                  SizedBox(height: 16.h),
+                  Row(
+                    children: [
+                      Container(
+                        padding:
+                            REdgeInsets.symmetric(horizontal: 8, vertical: 6),
+                        decoration: BoxDecoration(
+                          color: colorBlack,
+                          borderRadius: BorderRadius.circular(20.r),
+                        ),
+                        child: Text(
+                          typeBeginner[index],
+                          style: TextStyle(
+                            color: colorWhite,
+                            fontSize: 11.sp,
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                      ),
+                      SizedBox(width: 12.w),
+                      Container(
+                        padding:
+                            REdgeInsets.symmetric(horizontal: 8, vertical: 6),
+                        decoration: BoxDecoration(
+                          color: colorBlack,
+                          borderRadius: BorderRadius.circular(20.r),
+                        ),
+                        child: Row(
+                          children: [
+                            SvgPicture.asset(
+                              lightning,
+                              height: 10.h,
+                              width: 10.w,
+                            ),
+                            SizedBox(width: 1.w),
+                            Text(
+                              _set[index],
+                              style: TextStyle(
+                                color: colorWhite,
+                                fontSize: 11.sp,
+                                fontFamily: 'Inter',
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget intermediate() {
+    final List<String> typeIntermediate = [];
+    for (int i = 0; i < 10; i++) {
+      typeIntermediate.add('Intermediate');
+    }
+    return Column(
+      children: List.generate(
+        _images.length,
+        (index) => InkWell(
+          onTap: () {
+            _bodyPartController.setSelectedBodyPart(_bodyPartName[index]);
+            Get.to(() => HomeDetailsScreen(
+                numItems: 7, workoutName: _workoutName[index]));
+          },
+          child: Card(
+            shadowColor: colorLightGray,
+            margin: REdgeInsets.only(left: 16, right: 16, bottom: 12),
+            elevation: 3,
+            child: Container(
+              height: 105.h,
+              width: double.infinity,
+              padding: REdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage(_images[index]),
+                  fit: BoxFit.cover,
+                ),
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    _workoutName[index],
+                    style: TextStyle(
+                      color: colorWhite,
+                      fontSize: 24.sp,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  Row(
+                    children: [
+                      SvgPicture.asset(
+                        timer,
+                        height: 16.h,
+                        width: 16.w,
+                        color: colorWhite,
+                      ),
+                      SizedBox(width: 4.w),
+                      Text(
+                        _duration[index],
+                        style: TextStyle(
+                          color: colorWhite,
+                          fontSize: 13.sp,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      )
+                    ],
+                  ),
+                  SizedBox(height: 16.h),
+                  Row(
+                    children: [
+                      Container(
+                        padding:
+                            REdgeInsets.symmetric(horizontal: 8, vertical: 6),
+                        decoration: BoxDecoration(
+                          color: colorBlack,
+                          borderRadius: BorderRadius.circular(20.r),
+                        ),
+                        child: Text(
+                          typeIntermediate[index],
+                          style: TextStyle(
+                            color: colorWhite,
+                            fontSize: 11.sp,
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                      ),
+                      SizedBox(width: 12.w),
+                      Container(
+                        padding:
+                            REdgeInsets.symmetric(horizontal: 8, vertical: 6),
+                        decoration: BoxDecoration(
+                          color: colorBlack,
+                          borderRadius: BorderRadius.circular(20.r),
+                        ),
+                        child: Row(
+                          children: [
+                            SvgPicture.asset(
+                              lightning,
+                              height: 10.h,
+                              width: 10.w,
+                            ),
+                            SizedBox(width: 1.w),
+                            Text(
+                              _set[index],
+                              style: TextStyle(
+                                color: colorWhite,
+                                fontSize: 11.sp,
+                                fontFamily: 'Inter',
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget advanced() {
+    final List<String> typeAdvanced = [];
+    for (int i = 0; i < 10; i++) {
+      typeAdvanced.add('Advanced');
+    }
+    return Column(
+      children: List.generate(
+        _images.length,
+        (index) => InkWell(
+          onTap: () {
+            _bodyPartController.setSelectedBodyPart(_bodyPartName[index]);
+            Get.to(() => HomeDetailsScreen(
+                numItems: 10, workoutName: _workoutName[index]));
+          },
+          child: Card(
+            shadowColor: colorLightGray,
+            margin: REdgeInsets.only(left: 16, right: 16, bottom: 12),
+            elevation: 3,
+            child: Container(
+              height: 105.h,
+              width: double.infinity,
+              padding: REdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage(_images[index]),
+                  fit: BoxFit.cover,
+                ),
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    _workoutName[index],
+                    style: TextStyle(
+                      color: colorWhite,
+                      fontSize: 24.sp,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  Row(
+                    children: [
+                      SvgPicture.asset(
+                        timer,
+                        height: 16.h,
+                        width: 16.w,
+                        color: colorWhite,
+                      ),
+                      SizedBox(width: 4.w),
+                      Text(
+                        _duration[index],
+                        style: TextStyle(
+                          color: colorWhite,
+                          fontSize: 13.sp,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      )
+                    ],
+                  ),
+                  SizedBox(height: 16.h),
+                  Row(
+                    children: [
+                      Container(
+                        padding:
+                            REdgeInsets.symmetric(horizontal: 8, vertical: 6),
+                        decoration: BoxDecoration(
+                          color: colorBlack,
+                          borderRadius: BorderRadius.circular(20.r),
+                        ),
+                        child: Text(
+                          typeAdvanced[index],
+                          style: TextStyle(
+                            color: colorWhite,
+                            fontSize: 11.sp,
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                      ),
+                      SizedBox(width: 12.w),
+                      Container(
+                        padding:
+                            REdgeInsets.symmetric(horizontal: 8, vertical: 6),
+                        decoration: BoxDecoration(
+                          color: colorBlack,
+                          borderRadius: BorderRadius.circular(20.r),
+                        ),
+                        child: Row(
+                          children: [
+                            SvgPicture.asset(
+                              lightning,
+                              height: 10.h,
+                              width: 10.w,
+                            ),
+                            SizedBox(width: 1.w),
+                            Text(
+                              _set[index],
+                              style: TextStyle(
+                                color: colorWhite,
+                                fontSize: 11.sp,
+                                fontFamily: 'Inter',
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            ),
+          ),
         ),
       ),
     );

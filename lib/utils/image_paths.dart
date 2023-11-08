@@ -1,9 +1,5 @@
 const String logo = "assets/images/logo.svg";
-const String splash = "assets/images/splash.png";
-const String onboardingBg = "assets/images/onboarding_bg.png";
-const String loginBg = "assets/images/login_bg.png";
 const String home = "assets/images/home.svg";
-const String google = "assets/images/google.svg";
 const String drawer = "assets/images/menu.svg";
 const String notification = "assets/images/bell.svg";
 const String search = "assets/images/search.svg";
@@ -27,18 +23,25 @@ const String logout = "assets/images/logout.svg";
 const String target = "assets/images/target.svg";
 const String equipment = "assets/images/equipment.svg";
 const String rightArrow = "assets/images/right_arrow.svg";
+const String google = "assets/images/google.svg";
 
-const String trainingImage1 = "assets/images/training_image1.png";
-const String trainingImage2 = "assets/images/training_image2.png";
-const String trainingImage3 = "assets/images/training_image3.png";
-const String trainingImage4 = "assets/images/training_image4.png";
-const String trainingImage5 = "assets/images/training_image5.png";
+const String splash = "assets/images/splash.png";
+const String onboardingBg = "assets/images/onboarding_bg.png";
+const String loginBg = "assets/images/login_bg.png";
+
+
+const String trainingImage1 = "assets/images/back.png";
+const String trainingImage2 = "assets/images/abs.png";
+const String trainingImage3 = "assets/images/chest.png";
+const String trainingImage4 = "assets/images/lower_arm.png";
+const String trainingImage5 = "assets/images/lower_legs.jpg";
+const String trainingImage6 = "assets/images/neck.jpg";
+const String trainingImage7 = "assets/images/shoulders.png";
+const String trainingImage8 = "assets/images/upper_arm.png";
+const String trainingImage9 = "assets/images/upper_legs.png";
+const String trainingImage10 = "assets/images/waist.png";
+
+
 const String timerBg = "assets/images/timer_bg.png";
-const String fitness1 = "assets/images/fitness1.png";
-const String fitness2 = "assets/images/fitness2.png";
-const String fitness3 = "assets/images/fitness3.png";
-const String fitness4 = "assets/images/fitness4.png";
-const String fitness5 = "assets/images/fitness5.png";
-const String fitness6 = "assets/images/fitness6.png";
 
 const String profileImage = "assets/images/profile_image.jpg";

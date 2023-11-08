@@ -25,6 +25,7 @@ class _ProgramScreenState extends State<ProgramScreen> {
   String capitalize(String s) => s[0].toUpperCase() + s.substring(1);
   final ApiService _apiService = ApiService();
   List<Map<String, dynamic>> exercises = [];
+  List<Map<String, dynamic>> filteredExercises = [];
   int currentPage = 1;
 
   @override
@@ -39,6 +40,7 @@ class _ProgramScreenState extends State<ProgramScreen> {
           await _apiService.fetchExercisesByPage(page);
       setState(() {
         exercises.addAll(data);
+        filteredExercises.addAll(data);
         currentPage++;
       });
     } catch (e) {
@@ -49,6 +51,15 @@ class _ProgramScreenState extends State<ProgramScreen> {
 
   Future<void> loadMoreData() async {
     await fetchData(currentPage);
+  }
+
+  void filterExercises(String searchTerm) {
+    setState(() {
+      filteredExercises = exercises.where((exercise) {
+        String name = exercise['name'].toString().toLowerCase();
+        return name.contains(searchTerm.toLowerCase());
+      }).toList();
+    });
   }
 
   @override
@@ -144,6 +155,9 @@ class _ProgramScreenState extends State<ProgramScreen> {
                     child: TextFormField(
                       controller: searchController,
                       style: const TextStyle(color: colorBlack),
+                      onChanged: (value) {
+                        filterExercises(value);
+                      },
                       decoration: InputDecoration(
                         fillColor: colorSearchContainerBg,
                         hintText: "Search Exercises",
@@ -153,7 +167,7 @@ class _ProgramScreenState extends State<ProgramScreen> {
                           fontSize: 14.sp,
                         ),
                         prefixIcon: const Icon(Icons.search),
-                        contentPadding: REdgeInsets.all(16),
+                        contentPadding: EdgeInsets.all(16),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(50.r),
                           borderSide: const BorderSide(
@@ -171,6 +185,56 @@ class _ProgramScreenState extends State<ProgramScreen> {
                       ),
                     ),
                   ),
+                  if (searchController.text.isNotEmpty)
+                    Container(
+                      margin: REdgeInsets.only(top: 8),
+                      decoration: BoxDecoration(
+                        color: colorLighterGray,
+                        borderRadius: BorderRadius.circular(10.r),
+                      ),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: List.generate(
+                          filteredExercises.length,
+                          (index) {
+                            var exercise = filteredExercises[index];
+                            return Column(
+                              children: [
+                                InkWell(
+                                  onTap: () {
+                                    Get.to(ExercisesScreen(
+                                      name: exercise['name'],
+                                      gifUrl: exercise['gifUrl'],
+                                      secondaryMuscles: List<String>.from(
+                                          exercise['secondaryMuscles']),
+                                      instructions: List<String>.from(
+                                          exercise['instructions']),
+                                    ));
+                                  },
+                                  child: ListTile(
+                                      title: Text(
+                                    exercise['name'],
+                                    textAlign: TextAlign.start,
+                                    style: const TextStyle(
+                                      color: colorBlack,
+                                    ),
+                                  )),
+                                ),
+                                if (index != filteredExercises.length - 1)
+                                Padding(
+                                  padding: REdgeInsets.symmetric(horizontal: 16),
+                                  child: Divider(
+                                    color: colorLightGray,
+                                    height: 1.h,
+                                  ),
+                                ),
+                              ]
+                            );
+                          },
+                        ),
+                      ),
+                    ),
                   Gap(16.h),
                   GridView.count(
                     shrinkWrap: true,
