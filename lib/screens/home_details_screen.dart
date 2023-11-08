@@ -1,14 +1,17 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:http/http.dart' as http;
 import 'package:shimmer/shimmer.dart';
 
 import '../controller/body_part_controller.dart';
 import '../utils/app_colors.dart';
+import '../utils/strings.dart';
 import 'exercises_screen.dart';
 
 class HomeDetailsScreen extends StatefulWidget {
@@ -26,11 +29,15 @@ class _HomeDetailsScreenState extends State<HomeDetailsScreen> {
   List<Map<String, dynamic>> exercises = [];
 
   String capitalize(String s) => s[0].toUpperCase() + s.substring(1);
+  // ---- Interstitial Ad ---- //
+  InterstitialAd? interstitialAd;
+  int _numInterstitialLoadAttempts = 0;
 
   @override
   void initState() {
     super.initState();
     fetchExercises();
+    createInterstitial(); // Interstitial Ad
   }
 
   Future<void> fetchExercises() async {
@@ -58,6 +65,73 @@ class _HomeDetailsScreenState extends State<HomeDetailsScreen> {
     }
   }
 
+  // ---- Interstitial Ad functions----
+  static const AdRequest request = AdRequest(
+    keywords: <String>['foo', 'bar'],
+    contentUrl: 'http://foo.com/bar.html',
+    nonPersonalizedAds: true,
+  );
+
+  // ---- Interstitial Ad functions---- //
+  void createInterstitial() {
+    InterstitialAd.load(
+      adUnitId:
+      Platform.isAndroid ? interstitialAdUnitId : interstitialAdUnitId,
+      request: request,
+      adLoadCallback: InterstitialAdLoadCallback(
+        onAdLoaded: (InterstitialAd ad) {
+          print("Ad Loaded");
+          interstitialAd = ad;
+          _numInterstitialLoadAttempts = 0;
+        },
+        onAdFailedToLoad: (LoadAdError error) {
+          print("Ad Failed to Load");
+          interstitialAd = null;
+          _numInterstitialLoadAttempts += 1;
+          if (_numInterstitialLoadAttempts < 3) {
+            createInterstitial();
+          }
+        },
+      ),
+    );
+  }
+
+  void _showInterstitialAd() {
+    if (interstitialAd == null) {
+      print('Warning: attempt to show interstitialAd before loaded.');
+      return;
+    }
+    interstitialAd!.fullScreenContentCallback = FullScreenContentCallback(
+      onAdShowedFullScreenContent: (InterstitialAd ad) =>
+          print('ad onAdShowedFullScreenContent.'),
+      onAdDismissedFullScreenContent: (InterstitialAd ad) {
+        print('$ad onAdDismissedFullScreenContent.');
+        ad.dispose();
+        createInterstitial();
+      },
+      onAdFailedToShowFullScreenContent: (InterstitialAd ad, AdError error) {
+        print('$ad onAdFailedToShowFullScreenContent: $error');
+        ad.dispose();
+        createInterstitial();
+      },
+    );
+
+    interstitialAd!.setImmersiveMode(true);
+    interstitialAd!.show(
+      //     onUserEarnedReward: (AdWithoutView ad, RewardItem reward) {
+      //   print('$ad with reward $RewardItem(${reward.amount}, ${reward.type})');
+      // }
+    );
+    interstitialAd = null;
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    interstitialAd?.dispose(); // Interstitial Ad
+  }
+
+
   @override
   Widget build(BuildContext context) {
     String workoutName = widget.workoutName;
@@ -72,14 +146,14 @@ class _HomeDetailsScreenState extends State<HomeDetailsScreen> {
           },
           icon: const Icon(
             Icons.arrow_back,
-            color: Colors.white,
+            color: colorWhite,
           ),
         ),
         titleSpacing: -1,
         title: Text(
           workoutName,
           style: const TextStyle(
-            color: Colors.white,
+            color: colorWhite,
             fontWeight: FontWeight.w500,
           ),
         ),
@@ -96,6 +170,7 @@ class _HomeDetailsScreenState extends State<HomeDetailsScreen> {
                   splashColor: Colors.transparent,
                   highlightColor: Colors.transparent,
                   onTap: () {
+                    _showInterstitialAd();
                     // Navigate to ExerciseDetailsScreen when a card is tapped
                     Get.to(
                       ExercisesScreen(

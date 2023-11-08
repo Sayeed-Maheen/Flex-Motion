@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -5,11 +7,13 @@ import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:shimmer/shimmer.dart';
 
 import '../services/api_services.dart';
 import '../utils/app_colors.dart';
 import '../utils/image_paths.dart';
+import '../utils/strings.dart';
 import 'exercises_screen.dart';
 
 class ProgramScreen extends StatefulWidget {
@@ -28,10 +32,15 @@ class _ProgramScreenState extends State<ProgramScreen> {
   List<Map<String, dynamic>> filteredExercises = [];
   int currentPage = 1;
 
+  // ---- Interstitial Ad ---- //
+  InterstitialAd? interstitialAd;
+  int _numInterstitialLoadAttempts = 0;
+
   @override
   void initState() {
     super.initState();
     fetchData(currentPage);
+    createInterstitial(); // Interstitial Ad
   }
 
   Future<void> fetchData(int page) async {
@@ -60,6 +69,72 @@ class _ProgramScreenState extends State<ProgramScreen> {
         return name.contains(searchTerm.toLowerCase());
       }).toList();
     });
+  }
+
+  // ---- Interstitial Ad functions----
+  static const AdRequest request = AdRequest(
+    keywords: <String>['foo', 'bar'],
+    contentUrl: 'http://foo.com/bar.html',
+    nonPersonalizedAds: true,
+  );
+
+  // ---- Interstitial Ad functions---- //
+  void createInterstitial() {
+    InterstitialAd.load(
+      adUnitId:
+          Platform.isAndroid ? interstitialAdUnitId : interstitialAdUnitId,
+      request: request,
+      adLoadCallback: InterstitialAdLoadCallback(
+        onAdLoaded: (InterstitialAd ad) {
+          print("Ad Loaded");
+          interstitialAd = ad;
+          _numInterstitialLoadAttempts = 0;
+        },
+        onAdFailedToLoad: (LoadAdError error) {
+          print("Ad Failed to Load");
+          interstitialAd = null;
+          _numInterstitialLoadAttempts += 1;
+          if (_numInterstitialLoadAttempts < 3) {
+            createInterstitial();
+          }
+        },
+      ),
+    );
+  }
+
+  void _showInterstitialAd() {
+    if (interstitialAd == null) {
+      print('Warning: attempt to show interstitialAd before loaded.');
+      return;
+    }
+    interstitialAd!.fullScreenContentCallback = FullScreenContentCallback(
+      onAdShowedFullScreenContent: (InterstitialAd ad) =>
+          print('ad onAdShowedFullScreenContent.'),
+      onAdDismissedFullScreenContent: (InterstitialAd ad) {
+        print('$ad onAdDismissedFullScreenContent.');
+        ad.dispose();
+        createInterstitial();
+      },
+      onAdFailedToShowFullScreenContent: (InterstitialAd ad, AdError error) {
+        print('$ad onAdFailedToShowFullScreenContent: $error');
+        ad.dispose();
+        createInterstitial();
+      },
+    );
+
+    interstitialAd!.setImmersiveMode(true);
+    interstitialAd!.show(
+        //     onUserEarnedReward: (AdWithoutView ad, RewardItem reward) {
+        //   print('$ad with reward $RewardItem(${reward.amount}, ${reward.type})');
+        // }
+        );
+    interstitialAd = null;
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    interstitialAd?.dispose(); // Interstitial Ad
   }
 
   @override
@@ -202,6 +277,7 @@ class _ProgramScreenState extends State<ProgramScreen> {
                             return Column(children: [
                               InkWell(
                                 onTap: () {
+                                  _showInterstitialAd();
                                   Get.to(ExercisesScreen(
                                     name: exercise['name'],
                                     gifUrl: exercise['gifUrl'],

@@ -1,13 +1,18 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
+import 'package:get/get.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 import '../utils/app_colors.dart';
 import '../utils/image_paths.dart';
+import '../utils/strings.dart';
 
-class ExercisesScreen extends StatelessWidget {
+class ExercisesScreen extends StatefulWidget {
   final String name;
   final String gifUrl;
   final List<String> secondaryMuscles;
@@ -20,7 +25,45 @@ class ExercisesScreen extends StatelessWidget {
       required this.secondaryMuscles,
       required this.instructions});
 
+  @override
+  State<ExercisesScreen> createState() => _ExercisesScreenState();
+}
+
+class _ExercisesScreenState extends State<ExercisesScreen> {
   String capitalize(String s) => s[0].toUpperCase() + s.substring(1);
+
+  NativeAd? nativeAd;
+  RxBool isAdLoaded = false.obs;
+
+  @override
+  void initState() {
+    super.initState();
+    loadAd();
+  }
+
+  loadAd() {
+    nativeAd = NativeAd(
+        adUnitId: nativeAdsUnitId,
+        listener: NativeAdListener(
+          onAdLoaded: (ad) {
+            isAdLoaded.value = true;
+            log("Ad Loaded");
+          },
+          onAdFailedToLoad: (ad, error) {
+            isAdLoaded.value = false;
+          },
+        ),
+        request: const AdRequest(),
+        nativeTemplateStyle:
+            NativeTemplateStyle(templateType: TemplateType.small));
+    nativeAd!.load();
+  }
+
+  @override
+  void dispose() {
+    nativeAd?.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +85,7 @@ class ExercisesScreen extends StatelessWidget {
           ),
         ),
         title: Text(
-          capitalize(name),
+          capitalize(widget.name),
           style: TextStyle(
             fontSize: 20.sp,
             fontWeight: FontWeight.w500,
@@ -55,9 +98,23 @@ class ExercisesScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            SizedBox(height: 2.h),
+            Obx(
+              () => Container(
+                child: isAdLoaded.value
+                    ? ConstrainedBox(
+                        constraints: const BoxConstraints(
+                          maxHeight: 100,
+                          minHeight: 100,
+                        ),
+                        child: AdWidget(ad: nativeAd!))
+                    : const SizedBox(),
+              ),
+            ),
+            Gap(16.h),
             ClipRRect(
               borderRadius: BorderRadius.circular(10.r),
-              child: Image.network(gifUrl),
+              child: Image.network(widget.gifUrl),
             ),
             Gap(16.h),
             Text(
@@ -70,7 +127,7 @@ class ExercisesScreen extends StatelessWidget {
             ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: secondaryMuscles
+              children: widget.secondaryMuscles
                   .map((muscle) => Row(
                         children: [
                           Icon(
@@ -95,7 +152,7 @@ class ExercisesScreen extends StatelessWidget {
             ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: instructions
+              children: widget.instructions
                   .map((instruction) => Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
