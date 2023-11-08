@@ -5,7 +5,7 @@ const String notification = "assets/images/bell.svg";
 const String search = "assets/images/search.svg";
 const String timer = "assets/images/time.svg";
 const String program = "assets/images/program.svg";
-const String reports = "assets/images/report.svg";
+const String tips = "assets/images/lightbulb.svg";
 const String profile = "assets/images/profile.svg";
 const String lightning = "assets/images/lightning.svg";
 const String rotate = "assets/images/rotate.svg";
@@ -28,8 +28,6 @@ const String google = "assets/images/google.svg";
 const String splash = "assets/images/splash.png";
 const String onboardingBg = "assets/images/onboarding_bg.png";
 const String loginBg = "assets/images/login_bg.png";
-
-
 const String trainingImage1 = "assets/images/back.png";
 const String trainingImage2 = "assets/images/abs.png";
 const String trainingImage3 = "assets/images/chest.png";
@@ -40,8 +38,6 @@ const String trainingImage7 = "assets/images/shoulders.png";
 const String trainingImage8 = "assets/images/upper_arm.png";
 const String trainingImage9 = "assets/images/upper_legs.png";
 const String trainingImage10 = "assets/images/waist.png";
-
-
 const String timerBg = "assets/images/timer_bg.png";
 
 const String profileImage = "assets/images/profile_image.jpg";

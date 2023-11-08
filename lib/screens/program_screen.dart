@@ -167,7 +167,7 @@ class _ProgramScreenState extends State<ProgramScreen> {
                           fontSize: 14.sp,
                         ),
                         prefixIcon: const Icon(Icons.search),
-                        contentPadding: EdgeInsets.all(16),
+                        contentPadding: REdgeInsets.all(16),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(50.r),
                           borderSide: const BorderSide(
@@ -199,38 +199,37 @@ class _ProgramScreenState extends State<ProgramScreen> {
                           filteredExercises.length,
                           (index) {
                             var exercise = filteredExercises[index];
-                            return Column(
-                              children: [
-                                InkWell(
-                                  onTap: () {
-                                    Get.to(ExercisesScreen(
-                                      name: exercise['name'],
-                                      gifUrl: exercise['gifUrl'],
-                                      secondaryMuscles: List<String>.from(
-                                          exercise['secondaryMuscles']),
-                                      instructions: List<String>.from(
-                                          exercise['instructions']),
-                                    ));
-                                  },
-                                  child: ListTile(
-                                      title: Text(
-                                    exercise['name'],
-                                    textAlign: TextAlign.start,
-                                    style: const TextStyle(
-                                      color: colorBlack,
-                                    ),
-                                  )),
-                                ),
-                                if (index != filteredExercises.length - 1)
+                            return Column(children: [
+                              InkWell(
+                                onTap: () {
+                                  Get.to(ExercisesScreen(
+                                    name: exercise['name'],
+                                    gifUrl: exercise['gifUrl'],
+                                    secondaryMuscles: List<String>.from(
+                                        exercise['secondaryMuscles']),
+                                    instructions: List<String>.from(
+                                        exercise['instructions']),
+                                  ));
+                                },
+                                child: ListTile(
+                                    title: Text(
+                                  exercise['name'],
+                                  textAlign: TextAlign.start,
+                                  style: const TextStyle(
+                                    color: colorBlack,
+                                  ),
+                                )),
+                              ),
+                              if (index != filteredExercises.length - 1)
                                 Padding(
-                                  padding: REdgeInsets.symmetric(horizontal: 16),
+                                  padding:
+                                      REdgeInsets.symmetric(horizontal: 16),
                                   child: Divider(
                                     color: colorLightGray,
                                     height: 1.h,
                                   ),
                                 ),
-                              ]
-                            );
+                            ]);
                           },
                         ),
                       ),

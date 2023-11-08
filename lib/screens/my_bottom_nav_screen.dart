@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:uxpros/screens/profile_screen.dart';
 import 'package:uxpros/screens/program_screen.dart';
-import 'package:uxpros/screens/reports_screen.dart';
+import 'package:uxpros/screens/health_tips_screen.dart';
 import 'package:uxpros/screens/timer_screen.dart';
 import 'package:uxpros/utils/app_colors.dart';
 
@@ -26,7 +26,7 @@ class _MyBottomNavScreenState extends State<MyBottomNavScreen> {
     const HomeScreen(), // Replace with your actual home screen widget
     const TimerScreen(),
     const ProgramScreen(),
-    const ReportsScreen(),
+    const HealthTipsScreen(),
     ProfileScreen(),
   ];
 
@@ -81,12 +81,12 @@ class _MyBottomNavScreenState extends State<MyBottomNavScreen> {
           ),
           BottomNavigationBarItem(
             icon: SvgPicture.asset(
-              reports,
+              tips,
               height: 24.h,
               width: 24.w,
               color: _selectedIndex == 3 ? colorPrimary : colorLightGray,
             ),
-            label: 'Reports',
+            label: 'Tips',
           ),
           BottomNavigationBarItem(
             icon: SvgPicture.asset(

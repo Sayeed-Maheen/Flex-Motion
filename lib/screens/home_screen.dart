@@ -111,7 +111,7 @@ class _HomeScreenState extends State<HomeScreen>
             color: colorWhite,
           ),
         ),
-        titleSpacing: -1,
+        // titleSpacing: -1,
         // leading: MaterialButton(
         //   child: SvgPicture.asset(
         //     drawer,
