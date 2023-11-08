@@ -72,22 +72,6 @@ class _SplashScreenState extends State<SplashScreen> {
             fit: BoxFit.cover,
           ),
         ),
-        child: Align(
-          alignment: Alignment.bottomCenter,
-          child: Padding(
-            padding: REdgeInsets.all(12),
-            child: Text(
-              appVersion,
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 14.sp,
-                fontFamily: 'Roboto',
-                fontWeight: FontWeight.w400,
-                letterSpacing: 0.15,
-              ),
-            ),
-          ),
-        ),
       ),
     );
   }
