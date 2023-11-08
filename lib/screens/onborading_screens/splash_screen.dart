@@ -5,12 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:uxpros/screens/my_bottom_nav_screen.dart';
-import 'package:uxpros/utils/strings.dart';
+
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../utils/image_paths.dart';
+import '../../utils/strings.dart';
 import '../auth_screens/login_screen.dart';
+import '../my_bottom_nav_screen.dart';
 import 'onboarding_screen.dart';
 
 class SplashScreen extends StatefulWidget {

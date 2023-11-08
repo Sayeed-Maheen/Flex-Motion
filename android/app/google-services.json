@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "1010990827395",
-    "project_id": "uxpros-f52bc",
-    "storage_bucket": "uxpros-f52bc.appspot.com"
+    "project_number": "947978533933",
+    "project_id": "flexmotion-157b2",
+    "storage_bucket": "flexmotion-157b2.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1010990827395:android:06c498224251cafb97d8b6",
+        "mobilesdk_app_id": "1:947978533933:android:6bcf9d399b4b319541cca4",
         "android_client_info": {
-          "package_name": "com.example.uxpros"
+          "package_name": "com.example.flex_motion"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyADbStxHx79q_PFumW0aAheliVwopyKsCY"
+          "current_key": "AIzaSyA5sSPaskMbYM4vmpB9vK6Fo534jn4OeIo"
         }
       ],
       "services": {

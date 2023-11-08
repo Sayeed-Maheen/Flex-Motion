@@ -1,11 +1,11 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flex_motion/routes/routes.dart';
+import 'package:flex_motion/utils/app_colors.dart';
+import 'package:flex_motion/utils/strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
-import 'package:uxpros/routes/routes.dart';
-import 'package:uxpros/utils/app_colors.dart';
-import 'package:uxpros/utils/strings.dart';
 
 void main() async {
   SystemChrome.setSystemUIOverlayStyle(

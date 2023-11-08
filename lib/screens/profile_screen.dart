@@ -5,13 +5,13 @@ import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
-import 'package:uxpros/screens/auth_screens/login_screen.dart';
-import 'package:uxpros/screens/bmr_screen.dart';
 
 import '../services/auth_services.dart';
 import '../utils/app_colors.dart';
 import '../utils/image_paths.dart';
+import 'auth_screens/login_screen.dart';
 import 'bmi_screen.dart';
+import 'bmr_screen.dart';
 import 'my_profile_screen.dart';
 
 class ProfileScreen extends StatelessWidget {

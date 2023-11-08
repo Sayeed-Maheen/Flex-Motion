@@ -3,9 +3,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:uxpros/utils/app_colors.dart';
 
 import '../controller/body_part_controller.dart';
+import '../utils/app_colors.dart';
 import '../utils/image_paths.dart';
 import '../utils/strings.dart';
 import 'home_details_screen.dart';
@@ -111,17 +111,6 @@ class _HomeScreenState extends State<HomeScreen>
             color: colorWhite,
           ),
         ),
-        // titleSpacing: -1,
-        // leading: MaterialButton(
-        //   child: SvgPicture.asset(
-        //     drawer,
-        //     height: 24.h,
-        //     width: 24.w,
-        //   ),
-        //   onPressed: () {
-        //     _scaffoldKey.currentState?.openDrawer();
-        //   },
-        // ),
         actions: [
           IconButton(
             onPressed: () {},

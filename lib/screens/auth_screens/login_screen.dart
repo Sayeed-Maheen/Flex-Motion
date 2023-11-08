@@ -1,20 +1,20 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flex_motion/screens/auth_screens/signup_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:uxpros/screens/auth_screens/signup_screen.dart';
-import 'package:uxpros/screens/my_bottom_nav_screen.dart';
-import 'package:uxpros/utils/app_colors.dart';
-import 'package:uxpros/utils/my_form_field.dart';
 
 import '../../services/auth_services.dart';
+import '../../utils/app_colors.dart';
 import '../../utils/auth_toast.dart';
 import '../../utils/image_paths.dart';
 import '../../utils/my_button.dart';
+import '../../utils/my_form_field.dart';
 import '../../utils/strings.dart';
+import '../my_bottom_nav_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});

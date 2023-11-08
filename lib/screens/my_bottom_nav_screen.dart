@@ -1,14 +1,14 @@
+import 'package:flex_motion/screens/profile_screen.dart';
+import 'package:flex_motion/screens/program_screen.dart';
+import 'package:flex_motion/screens/timer_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:uxpros/screens/profile_screen.dart';
-import 'package:uxpros/screens/program_screen.dart';
-import 'package:uxpros/screens/health_tips_screen.dart';
-import 'package:uxpros/screens/timer_screen.dart';
-import 'package:uxpros/utils/app_colors.dart';
 
+import '../utils/app_colors.dart';
 import '../utils/image_paths.dart';
 import '../utils/strings.dart';
+import 'health_tips_screen.dart';
 import 'home_screen.dart';
 
 class MyBottomNavScreen extends StatefulWidget {

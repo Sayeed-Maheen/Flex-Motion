@@ -1,8 +1,8 @@
+import 'package:flex_motion/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:uxpros/utils/app_colors.dart';
 
 class ScrapCodes extends StatelessWidget {
   const ScrapCodes({Key? key}) : super(key: key);

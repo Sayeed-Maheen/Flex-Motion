@@ -5,10 +5,10 @@ import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
-import 'package:uxpros/utils/my_button.dart';
 
 import '../utils/app_colors.dart';
 import '../utils/image_paths.dart';
+import '../utils/my_button.dart';
 
 enum Gender { male, female }
 

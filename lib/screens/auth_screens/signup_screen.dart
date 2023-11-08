@@ -5,15 +5,15 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:uxpros/screens/auth_screens/login_screen.dart';
-import 'package:uxpros/screens/my_bottom_nav_screen.dart';
-import 'package:uxpros/utils/app_colors.dart';
-import 'package:uxpros/utils/my_form_field.dart';
 
+import '../../utils/app_colors.dart';
 import '../../utils/auth_toast.dart';
 import '../../utils/image_paths.dart';
 import '../../utils/my_button.dart';
+import '../../utils/my_form_field.dart';
 import '../../utils/strings.dart';
+import '../my_bottom_nav_screen.dart';
+import 'login_screen.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
