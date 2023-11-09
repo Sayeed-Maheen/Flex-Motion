@@ -9,6 +9,7 @@ import 'package:get/get_navigation/get_navigation.dart';
 import '../utils/app_colors.dart';
 import '../utils/image_paths.dart';
 import '../utils/my_button.dart';
+import '../utils/strings.dart';
 
 enum Gender { male, female }
 
@@ -65,7 +66,7 @@ class _BmrScreenState extends State<BmrScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "What is BMR?",
+                  whatIsBMR,
                   style: TextStyle(
                     fontSize: 16.sp,
                     fontWeight: FontWeight.w600,
@@ -74,7 +75,7 @@ class _BmrScreenState extends State<BmrScreen> {
                 ),
                 Gap(8.h),
                 Text(
-                  "The basal metabolic rate (BMR) is the amount of energy needed while resting in a temperate environment when the digestive system is inactive.",
+                  bmrDesc,
                   style: TextStyle(
                     fontSize: 13.sp,
                     fontWeight: FontWeight.w400,
@@ -95,7 +96,7 @@ class _BmrScreenState extends State<BmrScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Select Gender",
+                  selectGender,
                   style: TextStyle(
                     fontSize: 14.sp,
                     fontWeight: FontWeight.w600,
@@ -149,7 +150,7 @@ class _BmrScreenState extends State<BmrScreen> {
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             Text(
-                              "BMR Result",
+                              bmrResult,
                               style: TextStyle(
                                 color: colorBlack,
                                 fontSize: 20.sp,
@@ -167,7 +168,7 @@ class _BmrScreenState extends State<BmrScreen> {
                             ),
                             Gap(2.h),
                             Text(
-                              "Calories per day",
+                              caloriesPerDay,
                               style: TextStyle(
                                 color: colorBlack,
                                 fontSize: 20.sp,
@@ -178,7 +179,7 @@ class _BmrScreenState extends State<BmrScreen> {
                                 onPressed: () {
                                   Get.back();
                                 },
-                                text: "Close")
+                                text: close)
                           ],
                         ),
                       ),
@@ -186,7 +187,7 @@ class _BmrScreenState extends State<BmrScreen> {
                   );
                 });
           },
-          text: "Calculate BMR",
+          text: calculateBMRText,
         ),
       ),
     );
@@ -209,7 +210,7 @@ class _BmrScreenState extends State<BmrScreen> {
         ),
       ),
       title: Text(
-        'BMR',
+        bmrText,
         style: TextStyle(
           fontSize: 20.sp,
           fontWeight: FontWeight.w500,
@@ -222,7 +223,7 @@ class _BmrScreenState extends State<BmrScreen> {
   Expanded genderSection(Gender gender) {
     return Expanded(
       child: RadioListTile<Gender>(
-        title: Text(gender == Gender.male ? "Male" : "Female"),
+        title: Text(gender == Gender.male ? male : female),
         value: gender,
         groupValue: selectedGender,
         onChanged: (value) {
@@ -247,7 +248,7 @@ class _BmrScreenState extends State<BmrScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Select Height",
+            selectHeight,
             style: TextStyle(
               fontSize: 14.sp,
               fontWeight: FontWeight.w600,
@@ -267,7 +268,7 @@ class _BmrScreenState extends State<BmrScreen> {
                 ),
               ),
               Text(
-                ' ft',
+                ft,
                 style: TextStyle(
                   fontSize: 12.sp,
                   color: colorBlack,
@@ -283,7 +284,7 @@ class _BmrScreenState extends State<BmrScreen> {
                 ),
               ),
               Text(
-                ' in',
+                inch,
                 style: TextStyle(
                   fontSize: 12.sp,
                   color: colorBlack,
@@ -322,7 +323,7 @@ class _BmrScreenState extends State<BmrScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              "Select Age",
+              selectAge,
               style: TextStyle(
                 fontSize: 14.sp,
                 color: colorBlack,
@@ -394,7 +395,7 @@ class _BmrScreenState extends State<BmrScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              "Select Weight",
+              selectWeight,
               style: TextStyle(
                 fontSize: 14.sp,
                 color: colorBlack,

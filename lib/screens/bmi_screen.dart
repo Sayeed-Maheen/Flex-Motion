@@ -9,6 +9,7 @@ import 'package:get/get_navigation/get_navigation.dart';
 import '../utils/app_colors.dart';
 import '../utils/image_paths.dart';
 import '../utils/my_button.dart';
+import '../utils/strings.dart';
 
 enum Gender { male, female }
 
@@ -53,7 +54,7 @@ class _BmiScreenState extends State<BmiScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "What is BMI?",
+                    whatIsBMI,
                     style: TextStyle(
                       fontSize: 16.sp,
                       fontWeight: FontWeight.w600,
@@ -62,7 +63,7 @@ class _BmiScreenState extends State<BmiScreen> {
                   ),
                   Gap(8.h),
                   Text(
-                    "BMI is a measurement of a person's leanness or corpulence based on their height and weight, and is intended to quantify tissue mass. It is widely used as a general indicator of whether a person has a healthy body weight for their height.",
+                    bmiDesc,
                     style: TextStyle(
                       fontSize: 13.sp,
                       fontWeight: FontWeight.w400,
@@ -83,7 +84,7 @@ class _BmiScreenState extends State<BmiScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Select Gender",
+                    selectGender,
                     style: TextStyle(
                       fontSize: 14.sp,
                       fontWeight: FontWeight.w600,
@@ -116,7 +117,7 @@ class _BmiScreenState extends State<BmiScreen> {
             onPressed: () {
               showResultDialog(context);
             },
-            text: "Calculate BMI",
+            text: calculateBMI,
           ),
         ));
   }
@@ -138,7 +139,7 @@ class _BmiScreenState extends State<BmiScreen> {
         ),
       ),
       title: Text(
-        'BMI',
+        bmiText,
         style: TextStyle(
           fontSize: 20.sp,
           fontWeight: FontWeight.w500,
@@ -151,7 +152,7 @@ class _BmiScreenState extends State<BmiScreen> {
   Expanded genderSection(Gender gender) {
     return Expanded(
       child: RadioListTile<Gender>(
-        title: Text(gender == Gender.male ? "Male" : "Female"),
+        title: Text(gender == Gender.male ? male : female),
         value: gender,
         groupValue: selectedGender,
         onChanged: (value) {
@@ -176,7 +177,7 @@ class _BmiScreenState extends State<BmiScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Select Height",
+            selectHeight,
             style: TextStyle(
               fontSize: 14.sp,
               fontWeight: FontWeight.w600,
@@ -196,7 +197,7 @@ class _BmiScreenState extends State<BmiScreen> {
                 ),
               ),
               Text(
-                ' ft',
+                ft,
                 style: TextStyle(
                   fontSize: 12.sp,
                   color: colorBlack,
@@ -212,7 +213,7 @@ class _BmiScreenState extends State<BmiScreen> {
                 ),
               ),
               Text(
-                ' in',
+                inch,
                 style: TextStyle(
                   fontSize: 12.sp,
                   color: colorBlack,
@@ -251,7 +252,7 @@ class _BmiScreenState extends State<BmiScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              "Select Age",
+              selectAge,
               style: TextStyle(
                 fontSize: 14.sp,
                 color: colorBlack,
@@ -323,7 +324,7 @@ class _BmiScreenState extends State<BmiScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              "Select Weight",
+              selectWeight,
               style: TextStyle(
                 fontSize: 14.sp,
                 color: colorBlack,
@@ -394,13 +395,13 @@ class _BmiScreenState extends State<BmiScreen> {
           String resultText = '';
 
           if (bmiResult < 18.5) {
-            resultText = 'Under weight';
+            resultText = underWeight;
           } else if (bmiResult >= 18.5 && bmiResult < 25) {
-            resultText = 'Normal weight';
+            resultText = normalWeight;
           } else if (bmiResult >= 25 && bmiResult < 30) {
-            resultText = 'Over weight';
+            resultText = overWeight;
           } else {
-            resultText = 'Obese';
+            resultText = obese;
           }
           return Dialog(
             shape: RoundedRectangleBorder(
@@ -419,7 +420,7 @@ class _BmiScreenState extends State<BmiScreen> {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
-                      "BMI Result",
+                      bmiResultText,
                       style: TextStyle(
                         color: colorBlack,
                         fontSize: 20.sp,
@@ -445,7 +446,7 @@ class _BmiScreenState extends State<BmiScreen> {
                     ),
                     Gap(16.h),
                     Text(
-                      "BMI Scale",
+                      bmiScale,
                       style: TextStyle(
                         color: colorPrimary,
                         fontSize: 20.sp,
@@ -459,7 +460,7 @@ class _BmiScreenState extends State<BmiScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "Underweight",
+                              underweight,
                               style: TextStyle(
                                 fontSize: 14.sp,
                                 fontWeight: FontWeight.w400,
@@ -468,7 +469,7 @@ class _BmiScreenState extends State<BmiScreen> {
                             ),
                             Gap(4.h),
                             Text(
-                              "BMI < 18.5",
+                              underweightScale,
                               style: TextStyle(
                                 fontSize: 14.sp,
                                 fontWeight: FontWeight.w400,
@@ -481,7 +482,7 @@ class _BmiScreenState extends State<BmiScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "Normal",
+                              normal,
                               style: TextStyle(
                                 fontSize: 14.sp,
                                 fontWeight: FontWeight.w400,
@@ -490,7 +491,7 @@ class _BmiScreenState extends State<BmiScreen> {
                             ),
                             Gap(4.h),
                             Text(
-                              "BMI = 18.5-24.9",
+                              normalScale,
                               style: TextStyle(
                                 fontSize: 14.sp,
                                 fontWeight: FontWeight.w400,
@@ -509,7 +510,7 @@ class _BmiScreenState extends State<BmiScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "Overweight",
+                              overweight,
                               style: TextStyle(
                                 fontSize: 14.sp,
                                 fontWeight: FontWeight.w400,
@@ -518,7 +519,7 @@ class _BmiScreenState extends State<BmiScreen> {
                             ),
                             Gap(4.h),
                             Text(
-                              "BMI = 25-29.9",
+                              overweightScale,
                               style: TextStyle(
                                 fontSize: 14.sp,
                                 fontWeight: FontWeight.w400,
@@ -531,7 +532,7 @@ class _BmiScreenState extends State<BmiScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "Obesity                ",
+                              obesity,
                               style: TextStyle(
                                 fontSize: 14.sp,
                                 fontWeight: FontWeight.w400,
@@ -540,7 +541,7 @@ class _BmiScreenState extends State<BmiScreen> {
                             ),
                             Gap(4.h),
                             Text(
-                              "BMI > 30",
+                              obesityScale,
                               style: TextStyle(
                                 fontSize: 14.sp,
                                 fontWeight: FontWeight.w400,
@@ -556,7 +557,7 @@ class _BmiScreenState extends State<BmiScreen> {
                         onPressed: () {
                           Get.back();
                         },
-                        text: "Close")
+                        text: close)
                   ],
                 ),
               ),

@@ -194,7 +194,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          "Don't have an account?",
+                          dontHaveAnAccount,
                           style: TextStyle(
                             fontSize: 14.sp,
                             color: colorWhite,
@@ -211,7 +211,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                               alignment: Alignment.centerLeft),
                           child: Text(
-                            "Register",
+                            register,
                             style: TextStyle(
                               fontSize: 14.sp,
                               color: colorPrimary,

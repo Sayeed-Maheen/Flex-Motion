@@ -255,16 +255,16 @@ class ShimmerLoadingEffect extends StatelessWidget {
           child: ListTile(
             title: Container(
               height: 16.0,
-              color: Colors.white,
+              color: colorWhite,
             ),
             subtitle: Container(
               height: 12.0,
-              color: Colors.white,
+              color: colorWhite,
             ),
             leading: Container(
               width: 100.0,
               height: 100.0,
-              color: Colors.white, // Shimmer background color
+              color: colorWhite, // Shimmer background color
             ),
           ),
         );

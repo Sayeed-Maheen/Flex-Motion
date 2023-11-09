@@ -148,7 +148,7 @@ class _ProgramScreenState extends State<ProgramScreen> {
           color: colorPrimary, // Set a fixed color here
         ),
         title: Text(
-          'Programs',
+          programs,
           style: TextStyle(
             fontSize: 20.sp,
             fontWeight: FontWeight.w500,
@@ -192,7 +192,7 @@ class _ProgramScreenState extends State<ProgramScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'Only Four move for Abs',
+                              fourMoves,
                               style: TextStyle(
                                 color: colorWhite,
                                 fontSize: 20.sp,
@@ -203,7 +203,7 @@ class _ProgramScreenState extends State<ProgramScreen> {
                             SizedBox(
                               width: 220.w,
                               child: Text(
-                                'Four simple exercises only to burn belly and firm your core body',
+                                fourMovesDesc,
                                 maxLines: 3,
                                 style: TextStyle(
                                   color: colorWhite,
@@ -235,7 +235,7 @@ class _ProgramScreenState extends State<ProgramScreen> {
                       },
                       decoration: InputDecoration(
                         fillColor: colorSearchContainerBg,
-                        hintText: "Search Exercises",
+                        hintText: searchExercises,
                         hintStyle: TextStyle(
                           color: Colors.grey,
                           fontWeight: FontWeight.w300,

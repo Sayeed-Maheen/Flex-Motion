@@ -156,7 +156,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          "Already have an account?",
+                          alreadyHaveAnAccount,
                           style: TextStyle(
                             fontSize: 14.sp,
                             color: colorWhite,
@@ -173,7 +173,7 @@ class _SignupScreenState extends State<SignupScreen> {
                               tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                               alignment: Alignment.centerLeft),
                           child: Text(
-                            "Login",
+                            login,
                             style: TextStyle(
                               fontSize: 14.sp,
                               color: colorPrimary,

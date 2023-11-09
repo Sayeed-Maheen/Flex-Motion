@@ -118,7 +118,7 @@ class _ExercisesScreenState extends State<ExercisesScreen> {
             ),
             Gap(16.h),
             Text(
-              'Secondary Muscles:',
+              secondaryMuscles,
               style: TextStyle(
                 color: colorBlack,
                 fontSize: 14.sp,
@@ -143,7 +143,7 @@ class _ExercisesScreenState extends State<ExercisesScreen> {
             ),
             Gap(16.h),
             Text(
-              'Instructions:',
+              instructions,
               style: TextStyle(
                 color: colorBlack,
                 fontSize: 14.sp,

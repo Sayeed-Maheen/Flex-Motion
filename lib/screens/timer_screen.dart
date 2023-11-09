@@ -6,6 +6,7 @@ import 'package:gap/gap.dart';
 
 import '../utils/app_colors.dart';
 import '../utils/image_paths.dart';
+import '../utils/strings.dart';
 
 class TimerScreen extends StatefulWidget {
   const TimerScreen({super.key});
@@ -35,7 +36,7 @@ class _TimerScreenState extends State<TimerScreen> {
           color: colorPrimary, // Set a fixed color here
         ),
         title: Text(
-          'Timer',
+          timerText,
           style: TextStyle(
             fontSize: 20.sp,
             fontWeight: FontWeight.w500,
@@ -67,7 +68,7 @@ class _TimerScreenState extends State<TimerScreen> {
                     Row(
                       children: [
                         Text(
-                          'Timer Duration:',
+                          timerDuration,
                           style: TextStyle(
                             fontSize: 14.sp,
                             fontWeight: FontWeight.w400,
@@ -101,7 +102,7 @@ class _TimerScreenState extends State<TimerScreen> {
                         keyboardType: TextInputType.number,
                         decoration: InputDecoration(
                           fillColor: colorSearchContainerBg,
-                          hintText: "Enter duration in seconds",
+                          hintText: enterDurationInSeconds,
                           hintStyle: TextStyle(
                             color: Colors.grey,
                             fontWeight: FontWeight.w300,
@@ -169,7 +170,7 @@ class _TimerScreenState extends State<TimerScreen> {
                   ),
                   child: Center(
                     child: Text(
-                      'Start',
+                      start,
                       style: TextStyle(
                         color: colorWhite,
                         fontSize: 16.sp,
@@ -194,7 +195,7 @@ class _TimerScreenState extends State<TimerScreen> {
                   ),
                   child: Center(
                     child: Text(
-                      'Reset',
+                      reset,
                       style: TextStyle(
                         color: colorWhite,
                         fontSize: 16.sp,

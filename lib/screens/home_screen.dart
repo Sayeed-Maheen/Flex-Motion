@@ -23,10 +23,10 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen>
     with SingleTickerProviderStateMixin {
   final List<Widget> myTabs = [
-    const Tab(text: 'All'),
-    const Tab(text: 'Beginner'),
-    const Tab(text: 'Intermediate'),
-    const Tab(text: 'Advanced'),
+    const Tab(text: all),
+    const Tab(text: beginnerText),
+    const Tab(text: intermediateText),
+    const Tab(text: advancedText),
   ];
   late TabController _tabController;
   final BodyPartController _bodyPartController = Get.put(BodyPartController());
@@ -102,34 +102,34 @@ class _HomeScreenState extends State<HomeScreen>
   ];
 
   final List<String> _workoutName = [
-    'Back Workout',
-    'Cardio Workout',
-    'Chest Workout',
-    'Lower Arms Workout',
-    'Lower Legs Workout',
-    'Neck Workout',
-    'Shoulders Workout',
-    'Upper Arms Workout',
-    'Upper Legs Workout',
-    'Waist Workout',
+    backWorkout,
+    cardioWorkout,
+    chestWorkout,
+    lowerArmsWorkout,
+    lowerLegsWorkout,
+    neckWorkout,
+    shouldersWorkout,
+    upperArmsWorkout,
+    upperLegsWorkout,
+    waistWorkout,
   ];
 
   final List<String> _bodyPartName = [
-    'back',
-    'cardio',
-    'chest',
-    'lower arms',
-    'lower legs',
-    'neck',
-    'shoulders',
-    'upper arms',
-    'upper legs',
-    'waist',
+    backText2,
+    cardio,
+    chest,
+    lowerArms,
+    lowerLegs,
+    neck,
+    shoulders,
+    upperArms,
+    upperLegs,
+    waist,
   ];
 
   final List<String> _duration =
-      List.generate(10, (index) => '2 hours 20 minutes');
-  final List<String> _set = List.generate(10, (index) => '1/3');
+      List.generate(10, (index) => hours);
+  final List<String> _set = List.generate(10, (index) => set);
 
   @override
   Widget build(BuildContext context) {
@@ -292,7 +292,7 @@ class _HomeScreenState extends State<HomeScreen>
                     Padding(
                       padding: REdgeInsets.symmetric(horizontal: 16),
                       child: Text(
-                        'BEGINNER',
+                        beginnerText2,
                         style: TextStyle(
                           color: colorLightGray,
                           fontSize: 16.sp,
@@ -306,7 +306,7 @@ class _HomeScreenState extends State<HomeScreen>
                     Padding(
                       padding: REdgeInsets.symmetric(horizontal: 16),
                       child: Text(
-                        'INTERMEDIATE',
+                        intermediateText2,
                         style: TextStyle(
                           color: colorLightGray,
                           fontSize: 16.sp,
@@ -320,7 +320,7 @@ class _HomeScreenState extends State<HomeScreen>
                     Padding(
                       padding: REdgeInsets.symmetric(horizontal: 16),
                       child: Text(
-                        'ADVANCED',
+                        advancedText2,
                         style: TextStyle(
                           color: colorLightGray,
                           fontSize: 16.sp,

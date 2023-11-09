@@ -68,7 +68,7 @@ class _MyBottomNavScreenState extends State<MyBottomNavScreen> {
               width: 24.w,
               color: _selectedIndex == 1 ? colorPrimary : colorLightGray,
             ),
-            label: 'Timer',
+            label: timerText,
           ),
           BottomNavigationBarItem(
             icon: SvgPicture.asset(
@@ -77,7 +77,7 @@ class _MyBottomNavScreenState extends State<MyBottomNavScreen> {
               width: 24.w,
               color: _selectedIndex == 2 ? colorPrimary : colorLightGray,
             ),
-            label: 'Program',
+            label: programText,
           ),
           BottomNavigationBarItem(
             icon: SvgPicture.asset(
@@ -86,7 +86,7 @@ class _MyBottomNavScreenState extends State<MyBottomNavScreen> {
               width: 24.w,
               color: _selectedIndex == 3 ? colorPrimary : colorLightGray,
             ),
-            label: 'Tips',
+            label: tipsText,
           ),
           BottomNavigationBarItem(
             icon: SvgPicture.asset(
@@ -95,7 +95,7 @@ class _MyBottomNavScreenState extends State<MyBottomNavScreen> {
               width: 24.w,
               color: _selectedIndex == 4 ? colorPrimary : colorLightGray,
             ),
-            label: 'Profile',
+            label: profileText,
           ),
         ],
       ),

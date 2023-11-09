@@ -9,6 +9,7 @@ import 'package:get/get_navigation/get_navigation.dart';
 import '../services/auth_services.dart';
 import '../utils/app_colors.dart';
 import '../utils/image_paths.dart';
+import '../utils/strings.dart';
 import 'auth_screens/login_screen.dart';
 import 'bmi_screen.dart';
 import 'bmr_screen.dart';
@@ -16,11 +17,11 @@ import 'my_profile_screen.dart';
 
 class ProfileScreen extends StatelessWidget {
   final List<String> _screenName = [
-    'My Profile',
-    'My Goals',
-    'BMI',
-    'BMR',
-    'Log out',
+    myProfileText,
+    myGoalsText,
+    bmiText,
+    bmrText,
+    logOut,
   ];
 
   final List<String> _icons = [
@@ -43,7 +44,7 @@ class ProfileScreen extends StatelessWidget {
             color: colorPrimary, // Set a fixed color here
           ),
           title: Text(
-            "Profile",
+            profileText,
             style: TextStyle(
               fontSize: 20.sp,
               fontWeight: FontWeight.w500,
@@ -65,7 +66,7 @@ class ProfileScreen extends StatelessWidget {
           ),
           Gap(12.h),
           Text(
-            "Sayeed Hassan",
+            name,
             style: TextStyle(
               fontSize: 16.sp,
               fontWeight: FontWeight.w600,
@@ -73,7 +74,7 @@ class ProfileScreen extends StatelessWidget {
             ),
           ),
           Text(
-            "sayeedhassan1124@gmail.com",
+            email,
             style: TextStyle(
               fontSize: 12.sp,
               fontWeight: FontWeight.w400,

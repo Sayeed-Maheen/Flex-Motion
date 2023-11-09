@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 
 import '../utils/app_colors.dart';
+import '../utils/strings.dart';
 
 class HealthTipsScreen extends StatefulWidget {
   const HealthTipsScreen({super.key});
@@ -47,7 +48,7 @@ class _HealthTipsScreenState extends State<HealthTipsScreen> {
           color: colorPrimary, // Set a fixed color here
         ),
         title: Text(
-          'Health Tips',
+          healthTips,
           style: TextStyle(
             fontSize: 20.sp,
             fontWeight: FontWeight.w500,
@@ -90,7 +91,7 @@ class _HealthTipsScreenState extends State<HealthTipsScreen> {
                           ),
                           child: Center(
                             child: Text(
-                              "Next",
+                              next,
                               style: TextStyle(
                                 fontSize: 12.sp,
                                 fontWeight: FontWeight.w500,
@@ -104,7 +105,7 @@ class _HealthTipsScreenState extends State<HealthTipsScreen> {
                       TextButton(
                         onPressed: details.onStepCancel,
                         child: Text(
-                          "Back",
+                          backText,
                           style: TextStyle(
                             fontSize: 12.sp,
                             fontWeight: FontWeight.w500,
