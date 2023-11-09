@@ -89,7 +89,7 @@ class ProfileScreen extends StatelessWidget {
                   // Use the index to determine which screen to open.
                   switch (index) {
                     case 0:
-                      Get.to(const MyProfileScreen());
+                      // Get.to(const MyProfileScreen());
                       break;
                     case 1:
                       // Navigator.of(context).push(MaterialPageRoute(
