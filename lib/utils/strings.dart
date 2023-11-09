@@ -59,8 +59,6 @@ const String timerDuration = "Timer Duration:";
 const String enterDurationInSeconds = "Enter duration in seconds";
 const String start = "Start";
 const String reset = "Reset";
-
-
 const String secondaryMuscles = "Secondary Muscles:";
 const String instructions = "Instructions:";
 const String healthTips = "Health Tips";
