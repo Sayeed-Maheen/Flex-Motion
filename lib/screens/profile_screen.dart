@@ -13,7 +13,6 @@ import '../utils/strings.dart';
 import 'auth_screens/login_screen.dart';
 import 'bmi_screen.dart';
 import 'bmr_screen.dart';
-import 'my_profile_screen.dart';
 
 class ProfileScreen extends StatelessWidget {
   final List<String> _screenName = [

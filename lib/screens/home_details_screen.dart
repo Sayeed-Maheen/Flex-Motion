@@ -1,12 +1,10 @@
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:http/http.dart' as http;
 import 'package:shimmer/shimmer.dart';
 
@@ -14,7 +12,7 @@ import '../controller/body_part_controller.dart';
 import '../services/ad_services.dart';
 import '../utils/app_colors.dart';
 import '../utils/image_paths.dart';
-import '../utils/strings.dart';
+
 import 'exercises_screen.dart';
 
 class HomeDetailsScreen extends StatefulWidget {
