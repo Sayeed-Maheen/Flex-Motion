@@ -7,7 +7,7 @@ class ApiService {
   Future<List<Map<String, dynamic>>> fetchExercisesByPage(int page) async {
     final response =
         await http.get(Uri.parse('$baseUrl/exercises?page=$page'), headers: {
-      'X-RapidAPI-Key': '80220bfb6amshb35a1079de116b6p1d5440jsn5e32ae11893b',
+      'X-RapidAPI-Key': 'c6db7f5f9dmsh3254f86410205b1p1490c9jsn64567251f578',
       'X-RapidAPI-Host': 'exercisedb.p.rapidapi.com'
     });
 

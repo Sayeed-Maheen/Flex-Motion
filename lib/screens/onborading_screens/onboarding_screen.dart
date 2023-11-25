@@ -61,15 +61,18 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   ),
                 ),
                 SizedBox(height: 16.h),
-                Text(
-                  startWorkoutSubtitle,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 16.sp,
-                    fontFamily: 'Roboto',
-                    fontWeight: FontWeight.w400,
-                    letterSpacing: 0.15,
+                Padding(
+                  padding: REdgeInsets.symmetric(horizontal: 16),
+                  child: Text(
+                    startWorkoutSubtitle,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: colorWhite,
+                      fontSize: 16.sp,
+                      fontFamily: 'Roboto',
+                      fontWeight: FontWeight.w400,
+                      letterSpacing: 0.15,
+                    ),
                   ),
                 )
               ],

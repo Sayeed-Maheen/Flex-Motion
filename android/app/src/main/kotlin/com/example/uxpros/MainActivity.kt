@@ -1,4 +1,4 @@
-package com.example.flex_motion
+package com.code_nimbus.fit_flare
 
 import io.flutter.embedding.android.FlutterActivity
 

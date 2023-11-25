@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "947978533933",
-    "project_id": "flexmotion-157b2",
-    "storage_bucket": "flexmotion-157b2.appspot.com"
+    "project_number": "805832781535",
+    "project_id": "fit-flare-2de5a",
+    "storage_bucket": "fit-flare-2de5a.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:947978533933:android:6bcf9d399b4b319541cca4",
+        "mobilesdk_app_id": "1:805832781535:android:747568316760208446836a",
         "android_client_info": {
-          "package_name": "com.example.flex_motion"
+          "package_name": "com.code_nimbus.fit_flare"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyA5sSPaskMbYM4vmpB9vK6Fo534jn4OeIo"
+          "current_key": "AIzaSyCr54-XLFvm-36e8e-HR9jrOuOwUZJuz9I"
         }
       ],
       "services": {

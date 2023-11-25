@@ -1,13 +1,12 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 import '../controller/body_part_controller.dart';
+import '../services/ad_services.dart';
 import '../utils/app_colors.dart';
 import '../utils/image_paths.dart';
 import '../utils/strings.dart';
@@ -36,7 +35,6 @@ class _HomeScreenState extends State<HomeScreen>
   void initState() {
     _tabController = TabController(length: 4, vsync: this);
     _tabController.addListener(_handleTabSelection);
-    _createBottomBannerAd(); // Banner Ad
     super.initState();
   }
 
@@ -48,43 +46,9 @@ class _HomeScreenState extends State<HomeScreen>
     }
   }
 
-  // ---- Banner Ad ---- //
-  late BannerAd _bannerAd;
-  late bool _isBannerAdLoaded = false;
-
-  static String get bannerAdUnitId {
-    if (Platform.isAndroid) {
-      return bannerAdsUnitId;
-    } else if (Platform.isIOS) {
-      return bannerAdsUnitId;
-    } else {
-      throw UnsupportedError("Unsupported platform");
-    }
-  }
-
-  void _createBottomBannerAd() {
-    _bannerAd = BannerAd(
-      adUnitId: bannerAdUnitId,
-      size: AdSize.banner,
-      request: const AdRequest(),
-      listener: BannerAdListener(
-        onAdLoaded: (_) {
-          setState(() {
-            _isBannerAdLoaded = true;
-          });
-        },
-        onAdFailedToLoad: (ad, error) {
-          ad.dispose();
-        },
-      ),
-    );
-    _bannerAd.load();
-  }
-
   @override
   void dispose() {
     _tabController.dispose();
-    _bannerAd.dispose(); // Banner Ad
     super.dispose();
   }
 
@@ -127,8 +91,7 @@ class _HomeScreenState extends State<HomeScreen>
     waist,
   ];
 
-  final List<String> _duration =
-      List.generate(10, (index) => hours);
+  final List<String> _duration = List.generate(10, (index) => hours);
   final List<String> _set = List.generate(10, (index) => set);
 
   @override
@@ -179,103 +142,8 @@ class _HomeScreenState extends State<HomeScreen>
       body: SingleChildScrollView(
         child: Column(
           children: [
-            // Container(
-            //   width: double.infinity,
-            //   height: 120.h,
-            //   decoration: const BoxDecoration(
-            //     color: colorPrimary,
-            //   ),
-            //   child: const Row(
-            //     mainAxisAlignment: MainAxisAlignment.spaceAround,
-            //     crossAxisAlignment: CrossAxisAlignment.center,
-            //     children: [
-            //       Column(
-            //         mainAxisAlignment: MainAxisAlignment.center,
-            //         crossAxisAlignment: CrossAxisAlignment.center,
-            //         children: [
-            //           Text(
-            //             '12',
-            //             textAlign: TextAlign.center,
-            //             style: TextStyle(
-            //               color: Colors.white,
-            //               fontSize: 36,
-            //               fontFamily: 'Outfit',
-            //               fontWeight: FontWeight.w600,
-            //             ),
-            //           ),
-            //           Text(
-            //             'WORKOUT',
-            //             textAlign: TextAlign.center,
-            //             style: TextStyle(
-            //               color: Colors.white,
-            //               fontSize: 16,
-            //               fontFamily: 'Outfit',
-            //               fontWeight: FontWeight.w600,
-            //             ),
-            //           ),
-            //         ],
-            //       ),
-            //       Column(
-            //         mainAxisAlignment: MainAxisAlignment.center,
-            //         crossAxisAlignment: CrossAxisAlignment.center,
-            //         children: [
-            //           Text(
-            //             '3',
-            //             textAlign: TextAlign.center,
-            //             style: TextStyle(
-            //               color: Colors.white,
-            //               fontSize: 36,
-            //               fontFamily: 'Outfit',
-            //               fontWeight: FontWeight.w600,
-            //             ),
-            //           ),
-            //           Text(
-            //             'KCAL',
-            //             textAlign: TextAlign.center,
-            //             style: TextStyle(
-            //               color: Colors.white,
-            //               fontSize: 16,
-            //               fontFamily: 'Outfit',
-            //               fontWeight: FontWeight.w600,
-            //             ),
-            //           ),
-            //         ],
-            //       ),
-            //       Column(
-            //         mainAxisAlignment: MainAxisAlignment.center,
-            //         crossAxisAlignment: CrossAxisAlignment.center,
-            //         children: [
-            //           Text(
-            //             '2',
-            //             textAlign: TextAlign.center,
-            //             style: TextStyle(
-            //               color: Colors.white,
-            //               fontSize: 36,
-            //               fontFamily: 'Outfit',
-            //               fontWeight: FontWeight.w600,
-            //             ),
-            //           ),
-            //           Text(
-            //             'MINUTES',
-            //             textAlign: TextAlign.center,
-            //             style: TextStyle(
-            //               color: Colors.white,
-            //               fontSize: 16,
-            //               fontFamily: 'Outfit',
-            //               fontWeight: FontWeight.w600,
-            //             ),
-            //           ),
-            //         ],
-            //       ),
-            //     ],
-            //   ),
-            // ),
-            if (_isBannerAdLoaded)
-              SizedBox(
-                height: 50.h,
-                width: double.infinity,
-                child: AdWidget(ad: _bannerAd),
-              ),
+            Gap(8.h),
+            const BannerAdWidget(),
             TabBar(
               isScrollable: true,
               dividerColor: Colors.transparent,

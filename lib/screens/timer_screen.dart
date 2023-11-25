@@ -165,7 +165,7 @@ class _TimerScreenState extends State<TimerScreen> {
                   height: 50.h,
                   padding: REdgeInsets.symmetric(horizontal: 24, vertical: 16),
                   decoration: BoxDecoration(
-                    color: colorButtonDone,
+                    color: colorButtonStart,
                     borderRadius: BorderRadius.circular(8.r),
                   ),
                   child: Center(
@@ -190,7 +190,7 @@ class _TimerScreenState extends State<TimerScreen> {
                   height: 50.h,
                   padding: REdgeInsets.symmetric(horizontal: 24, vertical: 16),
                   decoration: BoxDecoration(
-                    color: colorButtonDone,
+                    color: colorButtonReset,
                     borderRadius: BorderRadius.circular(8.r),
                   ),
                   child: Center(
